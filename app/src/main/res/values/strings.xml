@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MazeSolver</string>
+    <string name="title_activity_maze_solver">MazeSolverActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Landing Screen Strings -->
+    <string name="landing_title">Maze Solver</string>
+    <string name="landing_solve">Solve The Maze!</string>
+    <string name="landing_options">Options</string>
+</resources>
