@@ -31,18 +31,17 @@ public class MazeSolverActivity extends Activity implements MazeSolverLandingFra
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_layout_holder, OptionsFragment.newInstance());
-        // TODO add landing fragment to backstack
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
     @Override
     public void navigateToSolveScreen(Algorithm method) {
         FragmentManager manager = getFragmentManager();
-
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_layout_holder, MazeSolveScreen.newInstance(method));
+        transaction.addToBackStack(null);
         transaction.commit();
-        // TODO add landing fragment to backstack
     }
 
 
