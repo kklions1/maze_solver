@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
@@ -57,11 +56,27 @@ public class MazeSolverLandingFragment extends Fragment {
             }
         });
 
-        Button solveButton = (Button) fragmentView.findViewById(R.id.solve_button);
-        solveButton.setOnClickListener(new View.OnClickListener() {
+        Button solveBFS = (Button) fragmentView.findViewById(R.id.button_solve_breath_first);
+        solveBFS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigationListener.navigateToSolveScreen();
+                navigationListener.navigateToSolveScreen(Algorithm.BFS);
+            }
+        });
+
+        Button solveDFS = (Button) fragmentView.findViewById(R.id.button_solve_depth_first);
+        solveDFS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigationListener.navigateToSolveScreen(Algorithm.DFS);
+            }
+        });
+
+        Button solveAStar = (Button) fragmentView.findViewById(R.id.button_solve_a_star);
+        solveAStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigationListener.navigateToSolveScreen(Algorithm.ASTAR);
             }
         });
     }
@@ -72,6 +87,6 @@ public class MazeSolverLandingFragment extends Fragment {
     public interface NavigationListener {
         void navigateToOptionsMenu();
 
-        void navigateToSolveScreen();
+        void navigateToSolveScreen(Algorithm method);
     }
 }

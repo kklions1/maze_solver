@@ -16,6 +16,8 @@ import kklions.mazesolver.R;
 
 public class OptionsFragment extends Fragment {
 
+    private View fragmentView;
+
     public static OptionsFragment newInstance() {
         return new OptionsFragment();
     }
@@ -27,7 +29,12 @@ public class OptionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.options_menu, container, false);
+        fragmentView = inflater.inflate(R.layout.options_menu, container, false);
+        return fragmentView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 }
