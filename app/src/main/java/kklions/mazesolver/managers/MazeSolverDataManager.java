@@ -1,5 +1,9 @@
 package kklions.mazesolver.managers;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +24,7 @@ import kklions.mazesolver.model.Point;
  *
  * Created by kliok002 on 11/14/17.
  */
-/*
+
 public class MazeSolverDataManager implements MazeSolving, MazeGenerator {
 
     // Maze Generation
@@ -167,7 +171,7 @@ public class MazeSolverDataManager implements MazeSolving, MazeGenerator {
         boolean[][] visited = new boolean[height][width];
 //        int[][] distance = new int[height][width];
         Point[][] predecessor = new Point[height][width];
-        LinkedList<Point> queue = new LinkedList<>();
+        LinkedList<Point> queue = Lists.newLinkedList();
 
         // setup arrays for search
         for (int row = 0; row < height; ++row) {
@@ -431,10 +435,5 @@ public class MazeSolverDataManager implements MazeSolving, MazeGenerator {
         return null;
     }
     // endregion
-
-}
-*/
-
-public class MazeSolverDataManager {
 
 }
