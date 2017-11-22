@@ -17,19 +17,26 @@ import kklions.mazesolver.enums.Algorithm;
 
 public class MazeSolveScreen extends Fragment {
 
+    private static final String methodKey = "method";
     private View fragmentView;
     private Algorithm solveMethod;
 
     public static MazeSolveScreen newInstance(Algorithm method) {
-        return new MazeSolveScreen(method);
+        MazeSolveScreen fragment = new MazeSolveScreen();
+        Bundle bundle = new Bundle();
+        bundle.putString(methodKey, method.name());
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     public MazeSolveScreen() {
 
     }
 
-    public MazeSolveScreen(Algorithm method) {
-        solveMethod = method;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
