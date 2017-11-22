@@ -87,6 +87,6 @@ public class MazeSolverLandingFragment extends Fragment {
     public interface NavigationListener {
         void navigateToOptionsMenu();
 
-        void navigateToSolveScreen(Algorithm method);
+        void navigateToSolveScreen(String method);
     }
 }

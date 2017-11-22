@@ -36,7 +36,7 @@ public class MazeSolverActivity extends Activity implements MazeSolverLandingFra
     }
 
     @Override
-    public void navigateToSolveScreen(Algorithm method) {
+    public void navigateToSolveScreen(String method) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_layout_holder, MazeSolveScreen.newInstance(method));

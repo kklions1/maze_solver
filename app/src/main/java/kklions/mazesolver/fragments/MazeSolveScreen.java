@@ -19,12 +19,12 @@ public class MazeSolveScreen extends Fragment {
 
     private static final String methodKey = "method";
     private View fragmentView;
-    private Algorithm solveMethod;
+    private String solveMethod;
 
-    public static MazeSolveScreen newInstance(Algorithm method) {
+    public static MazeSolveScreen newInstance(String method) {
         MazeSolveScreen fragment = new MazeSolveScreen();
         Bundle bundle = new Bundle();
-        bundle.putString(methodKey, method.name());
+        bundle.putString(methodKey, method);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -36,7 +36,7 @@ public class MazeSolveScreen extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        solveMethod = savedInstanceState.getString(methodKey);
     }
 
     @Override

@@ -6,8 +6,8 @@ package kklions.mazesolver.enums;
  * Created by kliok002 on 11/14/17.
  */
 
-public enum Algorithm {
-    BFS,
-    DFS,
-    ASTAR
+public abstract class Algorithm {
+    public static final String BFS = "breadthFirstSearch";
+    public static final String DFS = "depthFirstSearch";
+    public static final String ASTAR = "aStar";
 }
