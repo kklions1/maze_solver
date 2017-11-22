@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import kklions.mazesolver.R;
+import kklions.mazesolver.enums.Algorithm;
 
 /**
  * Maze Solving screen
@@ -17,13 +18,18 @@ import kklions.mazesolver.R;
 public class MazeSolveScreen extends Fragment {
 
     private View fragmentView;
+    private Algorithm solveMethod;
 
-    public static MazeSolveScreen newInstance() {
-        return new MazeSolveScreen();
+    public static MazeSolveScreen newInstance(Algorithm method) {
+        return new MazeSolveScreen(method);
     }
 
     public MazeSolveScreen() {
 
+    }
+
+    public MazeSolveScreen(Algorithm method) {
+        solveMethod = method;
     }
 
     @Override

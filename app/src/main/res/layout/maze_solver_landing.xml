@@ -16,18 +16,34 @@
         android:layout_height="25dp"/>
 
     <Button
-        android:id="@+id/solve_button"
+        android:id="@+id/button_solve_breath_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/landing_solve"/>
+        android:text="@string/solve_breadth_first"/>
+
+    <Button
+        android:id="@+id/button_solve_depth_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/solve_depth_first"/>
+
+
+    <Button
+        android:id="@+id/button_solve_a_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/solve_a_star"/>
+
 
     <Button
         android:id="@+id/options_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/landing_options"/>
+        android:text="@string/maze_options"/>
 
 
 </LinearLayout>
