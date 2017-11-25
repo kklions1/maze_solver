@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import kklions.mazesolver.R;
-import kklions.mazesolver.enums.Algorithm;
 
 /**
  * Maze Solving screen
@@ -45,6 +44,4 @@ public class MazeSolveScreen extends Fragment {
         fragmentView = inflater.inflate(R.layout.solve_maze_screen, container);
         return fragmentView;
     }
-
-//    public interface Navigation
 }
