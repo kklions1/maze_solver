@@ -1,6 +1,7 @@
-package kklions.mazesolver.injection.module;
+package kklions.mazesolver.injection;
 
 import android.app.Application;
+import android.content.Context;
 
 import javax.inject.Singleton;
 
@@ -10,7 +11,7 @@ import dagger.Provides;
 /**
  * Application Module class
  *
- * Created by kliok002 on 11/25/17.
+ * Created by Kevin Klions on 11/25/17.
  */
 
 @Module
@@ -25,5 +26,11 @@ public class AppModule {
     @Singleton
     Application providesApplication() {
         return mazeSolverApplication;
+    }
+
+    @Provides
+    @Singleton
+    Context provideApplicationContext() {
+        return mazeSolverApplication.getApplicationContext();
     }
 }

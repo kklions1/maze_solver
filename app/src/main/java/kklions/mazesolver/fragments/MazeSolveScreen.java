@@ -35,13 +35,15 @@ public class MazeSolveScreen extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        solveMethod = savedInstanceState.getString(methodKey);
+        if (savedInstanceState != null) {
+            solveMethod = savedInstanceState.getString(methodKey);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentView = inflater.inflate(R.layout.solve_maze_screen, container);
+        fragmentView = inflater.inflate(R.layout.solve_maze_screen, container, false);
         return fragmentView;
     }
 }

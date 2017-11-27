@@ -6,13 +6,17 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import kklions.mazesolver.R;
-import kklions.mazesolver.enums.Algorithm;
 import kklions.mazesolver.fragments.MazeSolveScreen;
 import kklions.mazesolver.fragments.MazeSolverLandingFragment;
 import kklions.mazesolver.fragments.OptionsFragment;
 
-public class MazeSolverActivity extends Activity implements MazeSolverLandingFragment.NavigationListener {
+/**
+ * Activity responsible for navigation between fragments
+ *
+ * Created by Kevin Klions on 11/18/17.
+ */
 
+public class MazeSolverActivity extends Activity implements MazeSolverLandingFragment.NavigationListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,4 @@ public class MazeSolverActivity extends Activity implements MazeSolverLandingFra
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-
 }

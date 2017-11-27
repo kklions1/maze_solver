@@ -1,4 +1,4 @@
-package kklions.mazesolver.injection.module;
+package kklions.mazesolver.injection;
 
 import javax.inject.Singleton;
 
@@ -9,7 +9,7 @@ import kklions.mazesolver.managers.MazeSolverDataManager;
 /**
  * Module for maze solving data manager
  *
- * Created by kliok002 on 11/25/17.
+ * Created by Kevin Klions on 11/25/17.
  */
 
 @Module

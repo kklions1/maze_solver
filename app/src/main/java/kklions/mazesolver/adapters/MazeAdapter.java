@@ -7,7 +7,7 @@ import kklions.mazesolver.managers.MazeSolverDataManager;
 /**
  * class responsible for dynamically updating the UI for solving the maze
  *
- * Created by kliok002 on 11/18/17.
+ * Created by Kevin Klions on 11/18/17.
  */
 
 public class MazeAdapter {

@@ -1,0 +1,17 @@
+Save maze screen
+- can save mazes to local SQLite database
+- can delete mazes from database
+- used if a particular maze had an interesting solution
+- display a list of all named mazes in a RecyclerView, possibly add a thumbnail image
+  - thumbnail would require a RecyclerView Adapter class 
+
+Options screen
+- configure size of the maze
+- impose limits/warnings when user attempts to generate large mazes
+- maybe offer to set the method used to solve the maze from this screen
+
+Landing Screen
+- Solve the Maze button -> navigates to maze solving screen (done) 
+- Options button -> Navigates to the options menu (done)
+- Saved Mazes -> Navigates to saved mazes screen
+

@@ -3,7 +3,7 @@ package kklions.mazesolver.model;
 /**
  * Edge in the minimum spanning tree
  *
- * Created by kliok002 on 11/18/17.
+ * Created by Kevin Klions on 11/18/17.
  */
 
 public class Edge implements Comparable {
