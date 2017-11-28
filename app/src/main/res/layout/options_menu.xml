@@ -48,13 +48,21 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="@string/maze_width"/>
+        android:text="@string/solve_time_interval"/>
+
+    <EditText
+        android:id="@+id/solve_time_delay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/solve_time_interval_default"/>
 
     <Button
         android:id="@+id/confirm_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="@string/confirm_button"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
 

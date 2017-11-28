@@ -4,9 +4,13 @@
     <string name="action_settings">Settings</string>
 
     <!-- Options Screen Strings -->
+    <string name="maze_options">Configure Maze</string>
     <string name="maze_height">Maze Height</string>
     <string name="maze_width">Maze Width</string>
     <string name="maze_height_default">30</string>
     <string name="maze_width_default">40</string>
+    <string name="solve_time_interval_default">500</string>
+    <string name="confirm_button">Confirm</string>
+    <string name="solve_time_interval">Maze Step Time (ms)</string>
 
 </resources>
