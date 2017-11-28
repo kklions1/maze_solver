@@ -17,10 +17,6 @@ import kklions.mazesolver.R;
 public class MazeDisplayFragment extends Fragment {
     private View fragmentView;
 
-    public static MazeDisplayFragment newInstance() {
-        return new MazeDisplayFragment();
-    }
-
     public MazeDisplayFragment() {
 
     }
