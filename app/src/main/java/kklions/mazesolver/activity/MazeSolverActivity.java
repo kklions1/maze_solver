@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.fragments.MazeSolveScreen;
-import kklions.mazesolver.fragments.MazeSolverLandingFragment;
 import kklions.mazesolver.fragments.OptionsFragment;
 
 /**
@@ -16,7 +15,7 @@ import kklions.mazesolver.fragments.OptionsFragment;
  * Created by Kevin Klions on 11/18/17.
  */
 
-public class MazeSolverActivity extends Activity implements MazeSolverLandingFragment.NavigationListener {
+public class MazeSolverActivity extends Activity implements OptionsFragment.NavigationListner {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +24,11 @@ public class MazeSolverActivity extends Activity implements MazeSolverLandingFra
         FragmentManager manager = getFragmentManager();
 
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.fragment_layout_holder, MazeSolverLandingFragment.newInstance());
+        transaction.add(R.id.fragment_layout_holder, OptionsFragment.newInstance());
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    @Override
-    public void navigateToOptionsMenu() {
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, OptionsFragment.newInstance());
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
     @Override
     public void navigateToSolveScreen(String method) {
