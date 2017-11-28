@@ -3,13 +3,6 @@
     <string name="title_activity_maze_solver">MazeSolverActivity</string>
     <string name="action_settings">Settings</string>
 
-    <!-- Landing Screen Strings -->
-    <string name="landing_title">Maze Solver</string>
-    <string name="solve_breadth_first">Solve With Breadth First Search</string>
-    <string name="solve_depth_first">Solve With Depth First Search</string>
-    <string name="solve_a_star">Solve With A*</string>
-    <string name="maze_options">Configure Maze</string>
-
     <!-- Options Screen Strings -->
     <string name="maze_height">Maze Height</string>
     <string name="maze_width">Maze Width</string>

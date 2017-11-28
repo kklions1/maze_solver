@@ -12,7 +12,7 @@ import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
 
 /**
- * Options Menu
+ * Landing screen for application, configure maze
  *
  * Created by kliok002 on 11/18/17.
  */
@@ -40,7 +40,7 @@ public class OptionsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Button confirmButton = (Button) fragmentView.findViewById(R.id.confirm_settings);
+        Button confirmButton = fragmentView.findViewById(R.id.confirm_settings);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

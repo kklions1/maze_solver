@@ -43,17 +43,20 @@
         android:layout_marginRight="8dp"
         android:text="@string/maze_width_default"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/maze_width"/>
 
     <Button
         android:id="@+id/confirm_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm"
+        android:text=""
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
-
-
-
 
     <!-- TODO add maze solve speed field -->
 
