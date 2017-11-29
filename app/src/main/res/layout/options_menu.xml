@@ -65,7 +65,4 @@
         android:text="@string/confirm_button"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"/>
-
-    <!-- TODO add maze solve speed field -->
-
 </LinearLayout>

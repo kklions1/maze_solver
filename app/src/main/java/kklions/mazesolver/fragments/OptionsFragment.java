@@ -45,6 +45,8 @@ public class OptionsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO get this data based on what is set in the options screen
+                // TODO migrate to Java 8 so this can be a lambda
+                // TODO add maze configuration to pass the data over to the next screen
                 navigationListner.navigateToSolveScreen(Algorithm.BFS);
             }
         });
@@ -59,6 +61,4 @@ public class OptionsFragment extends Fragment {
         super.onAttach(context);
         navigationListner = (NavigationListner) context;
     }
-
-
 }
