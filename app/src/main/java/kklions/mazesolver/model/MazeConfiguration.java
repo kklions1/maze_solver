@@ -11,23 +11,20 @@ public class MazeConfiguration {
     private int width;
     private String method;
 
-    private MazeConfiguration(Builder builder) {
-        height = builder.height;
-        width = builder.width;
-        method = builder.method;
-    }
-
     public int getHeight() { return this.height; }
 
     public int getWidth() { return this.width; }
 
     public String getMethod() { return this.method; }
 
-    public class Builder {
+    public static class Builder {
         private int height;
         private int width;
         private String method;
 
+        public Builder() {
+
+        }
 
         public Builder setHeight(int height) {
             this.height = height;
@@ -45,7 +42,11 @@ public class MazeConfiguration {
         }
 
         public MazeConfiguration build() {
-            return new MazeConfiguration(this);
+            MazeConfiguration mazeConfiguration = new MazeConfiguration();
+            mazeConfiguration.height = this.height;
+            mazeConfiguration.width = this.width;
+            mazeConfiguration.method = this.method;
+            return mazeConfiguration;
         }
     }
 }

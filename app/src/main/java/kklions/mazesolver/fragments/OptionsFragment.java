@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
+import kklions.mazesolver.model.MazeConfiguration;
 
 /**
  * Landing screen for application, configure maze
@@ -43,17 +44,23 @@ public class OptionsFragment extends Fragment {
         Button confirmButton = fragmentView.findViewById(R.id.confirm_settings);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // TODO get this data based on what is set in the options screen
+            public void onClick(View view) {
                 // TODO migrate to Java 8 so this can be a lambda
-                // TODO add maze configuration to pass the data over to the next screen
-                navigationListner.navigateToSolveScreen(Algorithm.BFS);
+
+                
+
+                MazeConfiguration configuration = new MazeConfiguration.Builder()
+                        .setHeight(40)
+                        .setWidth(30)
+                        .withMethod(Algorithm.BFS)
+                        .build();
+                navigationListner.navigateToSolveScreen(configuration);
             }
         });
     }
 
     public interface NavigationListner {
-        void navigateToSolveScreen(String method);
+        void navigateToSolveScreen(MazeConfiguration configuration);
     }
 
     @Override

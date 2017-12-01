@@ -8,6 +8,7 @@ import android.os.Bundle;
 import kklions.mazesolver.R;
 import kklions.mazesolver.fragments.MazeSolveScreen;
 import kklions.mazesolver.fragments.OptionsFragment;
+import kklions.mazesolver.model.MazeConfiguration;
 
 /**
  * Activity responsible for navigation between fragments
@@ -31,10 +32,10 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
 
 
     @Override
-    public void navigateToSolveScreen(String method) {
+    public void navigateToSolveScreen(MazeConfiguration configuration) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, MazeSolveScreen.newInstance(method));
+        transaction.replace(R.id.fragment_layout_holder, MazeSolveScreen.newInstance(configuration));
         transaction.addToBackStack(null);
         transaction.commit();
     }

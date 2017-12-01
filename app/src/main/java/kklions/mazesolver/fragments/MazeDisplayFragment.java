@@ -24,7 +24,6 @@ public class MazeDisplayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //TODO dynamically build the layout for the maze based on its height and width
         fragmentView = inflater.inflate(R.layout.maze_view, container);
         return fragmentView;
     }

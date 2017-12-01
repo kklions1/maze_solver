@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import kklions.mazesolver.R;
+import kklions.mazesolver.model.MazeConfiguration;
 
 /**
  * Maze Solving screen
@@ -20,10 +21,10 @@ public class MazeSolveScreen extends Fragment {
     private View fragmentView;
     private String solveMethod;
 
-    public static MazeSolveScreen newInstance(String method) {
+    public static MazeSolveScreen newInstance(MazeConfiguration configuration) {
         MazeSolveScreen fragment = new MazeSolveScreen();
+        //TODO make sure the maze configuration is passed over to the maze view fragment
         Bundle bundle = new Bundle();
-        bundle.putString(methodKey, method);
         fragment.setArguments(bundle);
         return fragment;
     }
