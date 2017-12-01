@@ -1,7 +1,8 @@
 package kklions.mazesolver.model;
 
 /**
- * Class used to transfer data regarding configuration data for the maze solving screen
+ * Class used to transfer data regarding configuration data for the maze solving screen'
+ * This may be refactored based on conversations with Davin later
  *
  * Created by kliok002 on 11/28/17.
  */
@@ -10,6 +11,7 @@ public class MazeConfiguration {
     private int height;
     private int width;
     private String method;
+    private int interval;
 
     public int getHeight() { return this.height; }
 
@@ -17,10 +19,13 @@ public class MazeConfiguration {
 
     public String getMethod() { return this.method; }
 
+    public int getInterval() { return this.interval; }
+
     public static class Builder {
         private int height;
         private int width;
         private String method;
+        private int interval;
 
         public Builder() {
 
@@ -36,8 +41,13 @@ public class MazeConfiguration {
             return this;
         }
 
-        public Builder withMethod(String method) {
+        public Builder setMethod(String method) {
             this.method = method;
+            return this;
+        }
+
+        public Builder setInterval(int interval) {
+            this.interval = interval;
             return this;
         }
 
@@ -46,6 +56,7 @@ public class MazeConfiguration {
             mazeConfiguration.height = this.height;
             mazeConfiguration.width = this.width;
             mazeConfiguration.method = this.method;
+            mazeConfiguration.interval = this.interval;
             return mazeConfiguration;
         }
     }

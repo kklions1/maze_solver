@@ -22,6 +22,7 @@
 
     <EditText
         android:id="@+id/maze_height_entry"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -37,6 +38,7 @@
 
     <EditText
         android:id="@+id/maze_width_entry"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -52,6 +54,7 @@
 
     <EditText
         android:id="@+id/solve_time_delay"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"

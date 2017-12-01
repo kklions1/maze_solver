@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
@@ -43,17 +44,20 @@ public class OptionsFragment extends Fragment {
         super.onStart();
         Button confirmButton = fragmentView.findViewById(R.id.confirm_settings);
         confirmButton.setOnClickListener((view) -> {
+            EditText mazeHeight = fragmentView.findViewById(R.id.maze_height_entry);
+            EditText mazeWidth = fragmentView.findViewById(R.id.maze_width_entry);
+            EditText timeInterval = fragmentView.findViewById(R.id.solve_time_delay);
 
-                MazeConfiguration configuration = new MazeConfiguration.Builder()
-                        .setHeight(40)
-                        .setWidth(30)
-                        .withMethod(Algorithm.BFS)
-                        .build();
-                navigationListner.navigateToSolveScreen(configuration);
+            MazeConfiguration configuration = new MazeConfiguration.Builder()
+                    .setHeight(Integer.parseInt(mazeHeight.getText().toString()))
+                    .setWidth(Integer.parseInt(mazeWidth.getText().toString()))
+                    .setInterval(Integer.parseInt(timeInterval.getText().toString()))
+                    .setMethod(Algorithm.BFS)
+                    .build();
+            navigationListner.navigateToSolveScreen(configuration);
         });
     }
-
-
+    
     public interface NavigationListner {
         void navigateToSolveScreen(MazeConfiguration configuration);
     }
