@@ -42,12 +42,7 @@ public class OptionsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         Button confirmButton = fragmentView.findViewById(R.id.confirm_settings);
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO migrate to Java 8 so this can be a lambda
-
-                
+        confirmButton.setOnClickListener((view) -> {
 
                 MazeConfiguration configuration = new MazeConfiguration.Builder()
                         .setHeight(40)
@@ -55,9 +50,9 @@ public class OptionsFragment extends Fragment {
                         .withMethod(Algorithm.BFS)
                         .build();
                 navigationListner.navigateToSolveScreen(configuration);
-            }
         });
     }
+
 
     public interface NavigationListner {
         void navigateToSolveScreen(MazeConfiguration configuration);

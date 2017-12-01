@@ -303,7 +303,7 @@ public class MazeSolverDataManager implements MazeSolving, MazeGenerator {
     }
 
     @Override
-    public List<Direction> solveAStarFirstAttempt(Cell[][] maze, int height, int width) {
+    public List<Direction> solveBestFirstSearch(Cell[][] maze, int height, int width) {
         Point start = null;
         Point end = null;
         boolean[][] visited = new boolean[height][width];

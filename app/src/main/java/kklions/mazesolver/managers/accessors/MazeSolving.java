@@ -30,5 +30,5 @@ public interface MazeSolving {
      * My first attempt at implementing A*, finds a path very fast in imperfect mazes,
      * but the path is usually not the shortest possible
      */
-    List<Direction> solveAStarFirstAttempt(Cell[][] maze, int height, int width);
+    List<Direction> solveBestFirstSearch(Cell[][] maze, int height, int width);
 }
