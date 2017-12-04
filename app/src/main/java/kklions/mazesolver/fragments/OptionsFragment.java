@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
+import kklions.mazesolver.managers.MazeSolverDataManager;
+import kklions.mazesolver.managers.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -22,7 +24,7 @@ import kklions.mazesolver.model.MazeConfiguration;
 public class OptionsFragment extends Fragment {
 
     private View fragmentView;
-    private NavigationListner navigationListner;
+    private NavigationListener navigationListener;
 
     public static OptionsFragment newInstance() {
         return new OptionsFragment();
@@ -54,17 +56,17 @@ public class OptionsFragment extends Fragment {
                     .setInterval(Integer.parseInt(timeInterval.getText().toString()))
                     .setMethod(Algorithm.BFS)
                     .build();
-            navigationListner.navigateToSolveScreen(configuration);
+            navigationListener.navigateToSolveScreen(configuration);
         });
     }
-    
-    public interface NavigationListner {
+
+    public interface NavigationListener {
         void navigateToSolveScreen(MazeConfiguration configuration);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        navigationListner = (NavigationListner) context;
+        navigationListener = (NavigationListener) context;
     }
 }

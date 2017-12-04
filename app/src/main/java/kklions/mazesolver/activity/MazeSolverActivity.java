@@ -8,6 +8,8 @@ import android.os.Bundle;
 import kklions.mazesolver.R;
 import kklions.mazesolver.fragments.MazeSolveScreen;
 import kklions.mazesolver.fragments.OptionsFragment;
+import kklions.mazesolver.managers.MazeSolverDataManager;
+import kklions.mazesolver.managers.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -16,7 +18,9 @@ import kklions.mazesolver.model.MazeConfiguration;
  * Created by Kevin Klions on 11/18/17.
  */
 
-public class MazeSolverActivity extends Activity implements OptionsFragment.NavigationListner {
+public class MazeSolverActivity extends Activity implements OptionsFragment.NavigationListener, DataManagerAccessor {
+
+    private MazeSolverDataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
         transaction.add(R.id.fragment_layout_holder, OptionsFragment.newInstance());
         transaction.addToBackStack(null);
         transaction.commit();
+
+        dataManager = new MazeSolverDataManager();
     }
 
 
@@ -38,5 +44,10 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
         transaction.replace(R.id.fragment_layout_holder, MazeSolveScreen.newInstance(configuration));
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public MazeSolverDataManager provideDataManager() {
+        return dataManager;
     }
 }

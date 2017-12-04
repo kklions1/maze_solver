@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
 import kklions.mazesolver.R;
 import kklions.mazesolver.model.MazeConfiguration;
 
@@ -17,14 +21,15 @@ import kklions.mazesolver.model.MazeConfiguration;
 
 public class MazeSolveScreen extends Fragment {
 
-    private static final String methodKey = "method";
+    private static final String configurationKey = "configuration";
     private View fragmentView;
-    private String solveMethod;
+    private MazeConfiguration configuration;
 
     public static MazeSolveScreen newInstance(MazeConfiguration configuration) {
         MazeSolveScreen fragment = new MazeSolveScreen();
-        //TODO make sure the maze configuration is passed over to the maze view fragment
         Bundle bundle = new Bundle();
+        String configurationJson = new Gson().toJson(configuration);
+        bundle.putString(configurationKey, configurationJson);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -36,8 +41,9 @@ public class MazeSolveScreen extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            solveMethod = savedInstanceState.getString(methodKey);
+        if(savedInstanceState != null) {
+            String configurationJson = savedInstanceState.getString(configurationKey);
+            configuration = new Gson().fromJson(configurationJson, MazeConfiguration.class);
         }
     }
 
