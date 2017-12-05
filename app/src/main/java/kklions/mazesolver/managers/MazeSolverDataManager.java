@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +12,6 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import kklions.mazesolver.enums.Direction;
-import kklions.mazesolver.managers.accessors.MazeGenerator;
-import kklions.mazesolver.managers.accessors.MazeSolvingAccessor;
 import kklions.mazesolver.model.Cell;
 import kklions.mazesolver.model.Edge;
 import kklions.mazesolver.model.Point;
@@ -25,10 +22,9 @@ import kklions.mazesolver.model.Point;
  * Created by kliok002 on 11/14/17.
  */
 
-public class MazeSolverDataManagerAccessor implements MazeSolvingAccessor, MazeGenerator {
+public class MazeSolverDataManager {
 
     // Maze Generation
-    @Override
     public Cell[][] generateMaze(int height, int width, float percentageMissing) {
 
         Cell[][] maze = new Cell[height][width];
@@ -164,7 +160,6 @@ public class MazeSolverDataManagerAccessor implements MazeSolvingAccessor, MazeG
 
     // Solving algorithms
 
-    @Override
     public List<Direction> solveBreadthFirstSearch(Cell[][] maze, int height, int width) {
         Point start = null;
         Point end = null;
@@ -289,20 +284,17 @@ public class MazeSolverDataManagerAccessor implements MazeSolvingAccessor, MazeG
 
         return null;    }
 
-    @Override
     public List<Direction> solveDepthFirstSearch(Cell[][] maze, int height, int width) {
         // TODO implement breadth first search using a stack instead of a queue
         return null;
     }
 
-    @Override
     public List<Direction> solveAStar(Cell[][] maze, int height, int width) {
         // TODO fix the comparator used in the first attempt A* implementation
         // TODO implement a fix to ensure the shortest path is always found
         return null;
     }
 
-    @Override
     public List<Direction> solveBestFirstSearch(Cell[][] maze, int height, int width) {
         Point start = null;
         Point end = null;
@@ -311,18 +303,15 @@ public class MazeSolverDataManagerAccessor implements MazeSolvingAccessor, MazeG
         int[][] distance = new int[height][width];
         Point[][] predecessor = new Point[height][width];
 
-        PriorityQueue<Point> queue = new PriorityQueue<>(new Comparator<Point>() {
-            @Override
-            public int compare(Point p1, Point p2) {
-                if (absoluteDistance[p1.getRow()][p1.getCol()] > absoluteDistance[p2.getRow()][p2.getCol()]) {
+        PriorityQueue<Point> queue = new PriorityQueue<>((point1, point2) -> {
+                if (absoluteDistance[point1.getRow()][point1.getCol()] > absoluteDistance[point2.getRow()][point2.getCol()]) {
                     return 1;
-                } else if (absoluteDistance[p1.getRow()][p1.getCol()] < absoluteDistance[p2.getRow()][p2.getCol()]) {
+                } else if (absoluteDistance[point1.getRow()][point1.getCol()] < absoluteDistance[point2.getRow()][point2.getCol()]) {
                     return -1;
                 } else {
                     return 0;
                 }
-            }
-        });
+            });
 
         try {
             // Find the start of the maze

@@ -3,7 +3,11 @@ package kklions.mazesolver.adapters;
 import android.content.Context;
 import android.view.View;
 
-import kklions.mazesolver.managers.MazeSolverDataManagerAccessor;
+import java.util.Map;
+
+import kklions.mazesolver.managers.MazeSolverDataManager;
+import kklions.mazesolver.managers.accessors.DataManagerAccessor;
+import kklions.mazesolver.model.Cell;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -14,20 +18,26 @@ import kklions.mazesolver.model.MazeConfiguration;
 
 public class MazeAdapter {
 
-    private MazeSolverDataManagerAccessor dataManager;
+    private MazeSolverDataManager dataManager;
     private MazeConfiguration configuration;
-    private Context context;
     private View fragmentView;
+    private Cell[][] maze;
 
 
-    public MazeAdapter(MazeConfiguration configuration, Context context, View fragmentView) {
+    public MazeAdapter(MazeConfiguration configuration, MazeSolverDataManager dataManager, View fragmentView) {
         this.configuration = configuration;
-        this.context = context;
         this.fragmentView = fragmentView;
-        dataManager
+        this.dataManager = dataManager;
     }
 
-    public void runAlgorithmAsync() {
+    /**
+     * Initializes the maze, and then draws it to the fragment's layout
+     */
+    public void initMaze() {
+        maze = dataManager.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
+    }
 
+    protected Map<String, Integer> getHeightAndWidth() {
+        Map<String, Integer>
     }
 }

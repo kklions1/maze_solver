@@ -6,9 +6,9 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import kklions.mazesolver.R;
-import kklions.mazesolver.fragments.MazeSolveScreen;
+import kklions.mazesolver.fragments.MazeSolveFragment;
 import kklions.mazesolver.fragments.OptionsFragment;
-import kklions.mazesolver.managers.MazeSolverDataManagerAccessor;
+import kklions.mazesolver.managers.MazeSolverDataManager;
 import kklions.mazesolver.managers.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
@@ -20,7 +20,7 @@ import kklions.mazesolver.model.MazeConfiguration;
 
 public class MazeSolverActivity extends Activity implements OptionsFragment.NavigationListener, DataManagerAccessor {
 
-    private MazeSolverDataManagerAccessor dataManager;
+    private MazeSolverDataManager dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
         transaction.addToBackStack(null);
         transaction.commit();
 
-        dataManager = new MazeSolverDataManagerAccessor();
+        dataManager = new MazeSolverDataManager();
     }
 
 
@@ -41,13 +41,13 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
     public void navigateToSolveScreen(MazeConfiguration configuration) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, MazeSolveScreen.newInstance(configuration));
+        transaction.replace(R.id.fragment_layout_holder, MazeSolveFragment.newInstance(configuration));
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
     @Override
-    public MazeSolverDataManagerAccessor provideDataManager() {
+    public MazeSolverDataManager provideDataManager() {
         return dataManager;
     }
 }

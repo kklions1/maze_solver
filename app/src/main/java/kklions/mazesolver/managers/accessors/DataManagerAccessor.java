@@ -1,6 +1,6 @@
 package kklions.mazesolver.managers.accessors;
 
-import kklions.mazesolver.managers.MazeSolverDataManagerAccessor;
+import kklions.mazesolver.managers.MazeSolverDataManager;
 
 /**
  * Interface to provide data manager to fragments from activities
@@ -9,5 +9,5 @@ import kklions.mazesolver.managers.MazeSolverDataManagerAccessor;
  */
 
 public interface DataManagerAccessor {
-    MazeSolverDataManagerAccessor provideDataManager();
+    MazeSolverDataManager provideDataManager();
 }

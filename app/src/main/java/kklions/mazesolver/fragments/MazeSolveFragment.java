@@ -12,9 +12,8 @@ import com.google.gson.Gson;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.adapters.MazeAdapter;
+import kklions.mazesolver.managers.MazeSolverDataManager;
 import kklions.mazesolver.managers.accessors.DataManagerAccessor;
-import kklions.mazesolver.managers.accessors.MazeGenerator;
-import kklions.mazesolver.managers.accessors.MazeSolvingAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -23,16 +22,16 @@ import kklions.mazesolver.model.MazeConfiguration;
  * Created by kliok002 on 11/18/17.
  */
 
-public class MazeSolveScreen extends Fragment {
+public class MazeSolveFragment extends Fragment {
 
     private static final String configurationKey = "configuration";
     private View fragmentView;
     private MazeConfiguration configuration;
-    private MazeGenerator mazeGenerator;
+    private MazeSolverDataManager dataManager;
     private MazeAdapter mazeAdapter;
 
-    public static MazeSolveScreen newInstance(MazeConfiguration configuration) {
-        MazeSolveScreen fragment = new MazeSolveScreen();
+    public static MazeSolveFragment newInstance(MazeConfiguration configuration) {
+        MazeSolveFragment fragment = new MazeSolveFragment();
         Bundle bundle = new Bundle();
         String configurationJson = new Gson().toJson(configuration);
         bundle.putString(configurationKey, configurationJson);
@@ -40,7 +39,7 @@ public class MazeSolveScreen extends Fragment {
         return fragment;
     }
 
-    public MazeSolveScreen() {
+    public MazeSolveFragment() {
 
     }
 
@@ -51,14 +50,13 @@ public class MazeSolveScreen extends Fragment {
             String configurationJson = savedInstanceState.getString(configurationKey);
             configuration = new Gson().fromJson(configurationJson, MazeConfiguration.class);
         }
-        mazeAdapter = new MazeAdapter(configuration, getContext(), fragmentView);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
-            mazeGenerator = ((DataManagerAccessor) getContext()).provideDataManager();
+            dataManager = ((DataManagerAccessor) getContext()).provideDataManager();
         } catch (ClassCastException e) {
             e.printStackTrace();
             throw new IllegalStateException("The Data manager does not implement the correct data accessor");
@@ -72,8 +70,8 @@ public class MazeSolveScreen extends Fragment {
         GridLayout mazeDisplay = fragmentView.findViewById(R.id.maze_display_view);
         mazeDisplay.setColumnCount(configuration.getWidth());
         mazeDisplay.setRowCount(configuration.getHeight());
-        mazeAdapter = new MazeAdapter(configuration, getContext(), fragmentView);
-        mazeGenerator.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
+        mazeAdapter = new MazeAdapter(configuration, dataManager, fragmentView);
+        mazeAdapter.initMaze();
         return fragmentView;
     }
 }
