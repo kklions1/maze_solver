@@ -30,9 +30,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.google.guava:guava:15.0'
     // Dagger 2
-    compile 'com.google.dagger:dagger-android:2.11'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+//    compile 'com.google.dagger:dagger-android:2.11'
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     // Gson
     compile 'com.google.code.gson:gson:2.8.2'
 }

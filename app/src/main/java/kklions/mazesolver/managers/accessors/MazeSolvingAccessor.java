@@ -6,10 +6,12 @@ import kklions.mazesolver.enums.Direction;
 import kklions.mazesolver.model.Cell;
 
 /**
+ * Interface for all the algorithms used to solve the mazes
+ *
  * Created by kliok002 on 11/18/17.
  */
 
-public interface MazeSolving {
+public interface MazeSolvingAccessor {
 
     /**
      * Simple breadth first search
@@ -29,6 +31,7 @@ public interface MazeSolving {
     /**
      * My first attempt at implementing A*, finds a path very fast in imperfect mazes,
      * but the path is usually not the shortest possible
+     * After some research, I found out this is called "Best First Search"
      */
     List<Direction> solveBestFirstSearch(Cell[][] maze, int height, int width);
 }

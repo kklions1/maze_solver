@@ -3,16 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Fragment is added statically here since later i plan to
-         add some controls to the maze -->
-    <fragment
-        android:id="@+id/maze_display_fragment"
+    <!-- generic grid layout, we should be able to dynamically set the dimensions
+        of the grid at runtime -->
+    <GridLayout
+        android:id="@+id/maze_display_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        class="kklions.mazesolver.fragments.MazeDisplayFragment"
         android:layout_weight="4"/>
 
     <!-- layout where the view controls for the solver go -->
+    <!-- TODO add functions for all these buttons -->
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -43,4 +44,5 @@
             android:text="Step"/>
 
     </LinearLayout>
+    -->
 </LinearLayout>

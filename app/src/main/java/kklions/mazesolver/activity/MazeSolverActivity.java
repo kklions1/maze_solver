@@ -8,7 +8,7 @@ import android.os.Bundle;
 import kklions.mazesolver.R;
 import kklions.mazesolver.fragments.MazeSolveScreen;
 import kklions.mazesolver.fragments.OptionsFragment;
-import kklions.mazesolver.managers.MazeSolverDataManager;
+import kklions.mazesolver.managers.MazeSolverDataManagerAccessor;
 import kklions.mazesolver.managers.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
@@ -20,7 +20,7 @@ import kklions.mazesolver.model.MazeConfiguration;
 
 public class MazeSolverActivity extends Activity implements OptionsFragment.NavigationListener, DataManagerAccessor {
 
-    private MazeSolverDataManager dataManager;
+    private MazeSolverDataManagerAccessor dataManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
         transaction.addToBackStack(null);
         transaction.commit();
 
-        dataManager = new MazeSolverDataManager();
+        dataManager = new MazeSolverDataManagerAccessor();
     }
 
 
@@ -47,7 +47,7 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
     }
 
     @Override
-    public MazeSolverDataManager provideDataManager() {
+    public MazeSolverDataManagerAccessor provideDataManager() {
         return dataManager;
     }
 }

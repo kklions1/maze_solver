@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import kklions.mazesolver.enums.Direction;
 import kklions.mazesolver.managers.accessors.MazeGenerator;
-import kklions.mazesolver.managers.accessors.MazeSolving;
+import kklions.mazesolver.managers.accessors.MazeSolvingAccessor;
 import kklions.mazesolver.model.Cell;
 import kklions.mazesolver.model.Edge;
 import kklions.mazesolver.model.Point;
@@ -25,7 +25,7 @@ import kklions.mazesolver.model.Point;
  * Created by kliok002 on 11/14/17.
  */
 
-public class MazeSolverDataManager implements MazeSolving, MazeGenerator {
+public class MazeSolverDataManagerAccessor implements MazeSolvingAccessor, MazeGenerator {
 
     // Maze Generation
     @Override

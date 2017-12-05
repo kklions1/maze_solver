@@ -11,8 +11,6 @@ import android.widget.EditText;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
-import kklions.mazesolver.managers.MazeSolverDataManager;
-import kklions.mazesolver.managers.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
