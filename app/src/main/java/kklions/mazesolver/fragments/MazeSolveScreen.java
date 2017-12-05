@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
+
 import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
 import kklions.mazesolver.R;
+import kklions.mazesolver.adapters.MazeAdapter;
 import kklions.mazesolver.managers.accessors.DataManagerAccessor;
+import kklions.mazesolver.managers.accessors.MazeGenerator;
 import kklions.mazesolver.managers.accessors.MazeSolvingAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
@@ -27,8 +28,8 @@ public class MazeSolveScreen extends Fragment {
     private static final String configurationKey = "configuration";
     private View fragmentView;
     private MazeConfiguration configuration;
-    private GridLayout.LayoutParams params;
-    private MazeSolvingAccessor mazeSolvingAccessor;
+    private MazeGenerator mazeGenerator;
+    private MazeAdapter mazeAdapter;
 
     public static MazeSolveScreen newInstance(MazeConfiguration configuration) {
         MazeSolveScreen fragment = new MazeSolveScreen();
@@ -50,13 +51,14 @@ public class MazeSolveScreen extends Fragment {
             String configurationJson = savedInstanceState.getString(configurationKey);
             configuration = new Gson().fromJson(configurationJson, MazeConfiguration.class);
         }
+        mazeAdapter = new MazeAdapter(configuration, getContext(), fragmentView);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
-            mazeSolvingAccessor = ((DataManagerAccessor) getContext()).provideDataManager();
+            mazeGenerator = ((DataManagerAccessor) getContext()).provideDataManager();
         } catch (ClassCastException e) {
             e.printStackTrace();
             throw new IllegalStateException("The Data manager does not implement the correct data accessor");
@@ -67,7 +69,11 @@ public class MazeSolveScreen extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.solve_maze_screen, container, false);
-
+        GridLayout mazeDisplay = fragmentView.findViewById(R.id.maze_display_view);
+        mazeDisplay.setColumnCount(configuration.getWidth());
+        mazeDisplay.setRowCount(configuration.getHeight());
+        mazeAdapter = new MazeAdapter(configuration, getContext(), fragmentView);
+        mazeGenerator.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
         return fragmentView;
     }
 }

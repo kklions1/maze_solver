@@ -12,6 +12,7 @@ public class MazeConfiguration {
     private int width;
     private String method;
     private int interval;
+    private int percentMissing;
 
     public int getHeight() { return this.height; }
 
@@ -21,11 +22,14 @@ public class MazeConfiguration {
 
     public int getInterval() { return this.interval; }
 
+    public int getPercentMissing() { return this.percentMissing; }
+
     public static class Builder {
         private int height;
         private int width;
         private String method;
         private int interval;
+        private int percentMissing;
 
         public Builder() {
 
@@ -51,12 +55,18 @@ public class MazeConfiguration {
             return this;
         }
 
+        public Builder setPercentMissing(int percentMissing) {
+            this.percentMissing = percentMissing;
+            return this;
+        }
+
         public MazeConfiguration build() {
             MazeConfiguration mazeConfiguration = new MazeConfiguration();
             mazeConfiguration.height = this.height;
             mazeConfiguration.width = this.width;
             mazeConfiguration.method = this.method;
             mazeConfiguration.interval = this.interval;
+            mazeConfiguration.percentMissing = this.percentMissing;
             return mazeConfiguration;
         }
     }
