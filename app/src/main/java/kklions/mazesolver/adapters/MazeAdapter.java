@@ -1,6 +1,7 @@
 package kklions.mazesolver.adapters;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.GridLayout;
 
 import kklions.mazesolver.managers.MazeSolverDataManager;
@@ -18,8 +19,8 @@ public class MazeAdapter {
     private final MazeSolverDataManager dataManager;
     private MazeConfiguration configuration;
     private View fragmentView;
-    private Cell[][] mazeData;
     private GridLayout mazeLayout;
+    private ViewGroup[][] mazeColors;
 
 
     public MazeAdapter(MazeConfiguration configuration, MazeSolverDataManager dataManager, View fragmentView) {
@@ -32,7 +33,7 @@ public class MazeAdapter {
      * Initializes the maze, and then draws it to the fragment's layout
      */
     public void initMaze() {
-        mazeData = dataManager.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
+        dataManager.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
 
     }
 

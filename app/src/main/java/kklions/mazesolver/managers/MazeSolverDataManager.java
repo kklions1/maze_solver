@@ -24,8 +24,10 @@ import kklions.mazesolver.model.Point;
 
 public class MazeSolverDataManager {
 
+    private Cell[][] maze;
+
     // Maze Generation
-    public Cell[][] generateMaze(int height, int width, float percentageMissing) {
+    public void generateMaze(int height, int width, float percentageMissing) {
 
         Cell[][] maze = new Cell[height][width];
         for (int i = 0; i < height; i++) {
@@ -40,7 +42,7 @@ public class MazeSolverDataManager {
         maze = removeExtraWalls(maze, height, width, percentageMissing);
         //create start and end
         maze = entryAndExit(maze, height, width);
-        return maze;
+        this.maze = maze;
     }
 
     private List<Edge> createMinSpanningTree(int height, int width) {
@@ -160,7 +162,7 @@ public class MazeSolverDataManager {
 
     // Solving algorithms
 
-    public List<Direction> solveBreadthFirstSearch(Cell[][] maze, int height, int width) {
+    public List<Direction> solveBreadthFirstSearch(int height, int width) {
         Point start = null;
         Point end = null;
         boolean[][] visited = new boolean[height][width];
@@ -284,18 +286,18 @@ public class MazeSolverDataManager {
 
         return null;    }
 
-    public List<Direction> solveDepthFirstSearch(Cell[][] maze, int height, int width) {
+    public List<Direction> solveDepthFirstSearch(int height, int width) {
         // TODO implement breadth first search using a stack instead of a queue
         return null;
     }
 
-    public List<Direction> solveAStar(Cell[][] maze, int height, int width) {
+    public List<Direction> solveAStar(int height, int width) {
         // TODO fix the comparator used in the first attempt A* implementation
         // TODO implement a fix to ensure the shortest path is always found
         return null;
     }
 
-    public List<Direction> solveBestFirstSearch(Cell[][] maze, int height, int width) {
+    public List<Direction> solveBestFirstSearch(int height, int width) {
         Point start = null;
         Point end = null;
         boolean[][] visited = new boolean[height][width];
