@@ -35,7 +35,7 @@ dependencies {
 //    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
 //    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     // Gson
-//    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.google.code.gson:gson:2.8.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {

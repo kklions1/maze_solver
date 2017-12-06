@@ -28,22 +28,22 @@ public class MazeSolveFragment extends Fragment {
     private MazeAdapter mazeAdapter;
 
     public static MazeSolveFragment newInstance(MazeConfiguration configuration) {
-        MazeSolveFragment fragment = new MazeSolveFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(configurationKey, configuration);
+        MazeSolveFragment fragment = new MazeSolveFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    public MazeSolveFragment() {
-
-    }
+    public MazeSolveFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             configuration = (MazeConfiguration) savedInstanceState.getSerializable(configurationKey);
+        } else {
+            configuration = (MazeConfiguration) getArguments().getSerializable(configurationKey);
         }
     }
 

@@ -53,6 +53,7 @@ public class OptionsFragment extends Fragment {
                     .setWidth(Integer.parseInt(mazeWidth.getText().toString()))
                     .setInterval(Integer.parseInt(timeInterval.getText().toString()))
                     .setMethod(Algorithm.BFS)
+                    .setPercentMissing(0)
                     .build();
             navigationListener.navigateToSolveScreen(configuration);
         });
