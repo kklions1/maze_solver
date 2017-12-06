@@ -1,12 +1,12 @@
 package kklions.mazesolver.adapters;
 
+import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridLayout;
 
 import kklions.mazesolver.R;
+import kklions.mazesolver.enums.Algorithm;
 import kklions.mazesolver.managers.MazeSolverDataManager;
-import kklions.mazesolver.model.Cell;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -24,7 +24,7 @@ public class MazeAdapter {
     private View[][] mazeColors;
 
 
-    public MazeAdapter(MazeConfiguration configuration, MazeSolverDataManager dataManager, View fragmentView) {
+    public MazeAdapter(@NonNull MazeConfiguration configuration, @NonNull MazeSolverDataManager dataManager, @NonNull View fragmentView) {
         this.configuration = configuration;
         this.fragmentView = fragmentView;
         this.dataManager = dataManager;
@@ -52,10 +52,20 @@ public class MazeAdapter {
 
     public void solveMaze() {
         switch (configuration.getMethod()) {
+            case Algorithm.BFS:
 
+                break;
+            case Algorithm.DFS:
 
-            
+                break;
+            case Algorithm.ASTAR:
+
+                break;
+            default:
+
+                break;
         }
-        // TODO solve the maze
     }
+        // TODO solve the maze
 }
+

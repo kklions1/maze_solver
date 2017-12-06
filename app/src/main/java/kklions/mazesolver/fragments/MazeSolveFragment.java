@@ -1,6 +1,8 @@
 package kklions.mazesolver.fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,13 +50,13 @@ public class MazeSolveFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         try {
-            dataManager = ((DataManagerAccessor) getContext()).provideDataManager();
+            dataManager = ((DataManagerAccessor) context).provideDataManager();
         } catch (ClassCastException e) {
             e.printStackTrace();
-            throw new IllegalStateException("The Data manager does not implement the correct data accessor");
+            throw new IllegalStateException("The Activity does not implement the correct provider");
         }
     }
 
