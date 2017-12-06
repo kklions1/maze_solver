@@ -1,5 +1,7 @@
 package kklions.mazesolver.model;
 
+import java.io.Serializable;
+
 /**
  * Class used to transfer data regarding configuration data for the maze solving screen'
  * This may be refactored based on conversations with Davin later
@@ -7,7 +9,7 @@ package kklions.mazesolver.model;
  * Created by kliok002 on 11/28/17.
  */
 
-public class MazeConfiguration {
+public class MazeConfiguration implements Serializable {
     private int height;
     private int width;
     private String method;

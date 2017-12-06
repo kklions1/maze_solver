@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
-
-import com.google.gson.Gson;
-
 import kklions.mazesolver.R;
 import kklions.mazesolver.adapters.MazeAdapter;
 import kklions.mazesolver.managers.MazeSolverDataManager;
@@ -33,8 +30,7 @@ public class MazeSolveFragment extends Fragment {
     public static MazeSolveFragment newInstance(MazeConfiguration configuration) {
         MazeSolveFragment fragment = new MazeSolveFragment();
         Bundle bundle = new Bundle();
-        String configurationJson = new Gson().toJson(configuration);
-        bundle.putString(configurationKey, configurationJson);
+        bundle.putSerializable(configurationKey, configuration);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -47,8 +43,7 @@ public class MazeSolveFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState != null) {
-            String configurationJson = savedInstanceState.getString(configurationKey);
-            configuration = new Gson().fromJson(configurationJson, MazeConfiguration.class);
+            configuration = (MazeConfiguration) savedInstanceState.getSerializable(configurationKey);
         }
     }
 
