@@ -426,5 +426,4 @@ public class MazeSolverDataManager {
         return null;
     }
     // endregion
-
 }

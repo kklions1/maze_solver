@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 
+import kklions.mazesolver.R;
 import kklions.mazesolver.managers.MazeSolverDataManager;
 import kklions.mazesolver.model.Cell;
 import kklions.mazesolver.model.MazeConfiguration;
@@ -20,7 +21,7 @@ public class MazeAdapter {
     private MazeConfiguration configuration;
     private View fragmentView;
     private GridLayout mazeLayout;
-    private ViewGroup[][] mazeColors;
+    private View[][] mazeColors;
 
 
     public MazeAdapter(MazeConfiguration configuration, MazeSolverDataManager dataManager, View fragmentView) {
@@ -30,14 +31,31 @@ public class MazeAdapter {
     }
 
     /**
-     * Initializes the maze, and then draws it to the fragment's layout
+     * gets the data manager to generate the maze, and then draws the maze to the UI
      */
     public void initMaze() {
         dataManager.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
+        mazeLayout = fragmentView.findViewById(R.id.maze_display_view);
+        // A reference to each element in the grid layout is needed, so this will get each element in the layout and assign it to an array for easy access
+        int index = 0;
+        for (int row = 0; row < configuration.getHeight(); row++) {
+            for (int col = 0; col < configuration.getWidth(); col++) {
+                mazeColors[row][col] = mazeLayout.getChildAt(index);
+                index++;
+            }
+        }
+    }
+
+    private void setMazeColors(int row, int col) {
 
     }
 
     public void solveMaze() {
+        switch (configuration.getMethod()) {
+
+
+            
+        }
         // TODO solve the maze
     }
 }
