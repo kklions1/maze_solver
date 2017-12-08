@@ -8,7 +8,7 @@
     <GridLayout
         android:id="@+id/maze_display_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="4"/>
 
     <!-- layout where the view controls for the solver go -->

@@ -26,6 +26,10 @@ public class MazeSolverDataManager {
 
     private Cell[][] maze;
 
+    public Cell getMazeCell(int row, int col) {
+        return maze[row][col];
+    }
+
     // Maze Generation
     public void generateMaze(int height, int width, float percentageMissing) {
 

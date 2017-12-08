@@ -67,7 +67,7 @@ public class MazeSolveFragment extends Fragment {
         GridLayout mazeDisplay = fragmentView.findViewById(R.id.maze_display_view);
         mazeDisplay.setColumnCount(configuration.getWidth());
         mazeDisplay.setRowCount(configuration.getHeight());
-        mazeAdapter = new MazeAdapter(configuration, dataManager, fragmentView);
+        mazeAdapter = new MazeAdapter(configuration, dataManager, fragmentView, getContext());
         mazeAdapter.initMaze();
         return fragmentView;
     }
