@@ -1,8 +1,10 @@
 package kklions.mazesolver.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
@@ -50,12 +52,22 @@ public class MazeAdapter {
     }
 
     private void initializeGridLayout() {
+
+        // Get Screen Size and calculate the size of a cell to fill the screen
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenHeight = displayMetrics.heightPixels;
+        int screenWidth = displayMetrics.widthPixels;
+        int cellHeight = screenHeight / configuration.getHeight();
+        int cellWidth = screenWidth / configuration.getWidth();
+
+        // Initialize the layout with empty TextViews
         for (int row = 0; row < configuration.getHeight(); row++) {
             for (int col = 0; col < configuration.getWidth(); col++) {
                 mazeColors[row][col] = new TextView(context);
                 mazeColors[row][col].setLayoutParams(new ViewGroup.LayoutParams(GridLayout.LayoutParams.MATCH_PARENT,
                         GridLayout.LayoutParams.MATCH_PARENT));
-                mazeLayout.addView(mazeColors[row][col], 50, 50);
+                mazeLayout.addView(mazeColors[row][col], cellWidth, cellHeight);
             }
         }
     }
