@@ -63,8 +63,8 @@ public class MazeSolveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentView = inflater.inflate(R.layout.solve_maze_screen, container, false);
-        GridLayout mazeDisplay = fragmentView.findViewById(R.id.maze_display_view);
+        fragmentView = inflater.inflate(R.layout.maze_view, container, false);
+        GridLayout mazeDisplay = fragmentView.findViewById(R.id.maze_view);
         mazeDisplay.setColumnCount(configuration.getWidth());
         mazeDisplay.setRowCount(configuration.getHeight());
         mazeAdapter = new MazeAdapter(configuration, dataManager, fragmentView, getContext());

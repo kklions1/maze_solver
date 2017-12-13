@@ -14,7 +14,7 @@ public class Cell implements Serializable {
     public boolean left;
     public boolean right;
 
-    // TODO possibly refactor this so that I can incorperate the Point class to reduce code
+    // TODO possibly refactor this so that I can incorporate the Point class to reduce code
 
     public Cell() { }
 }

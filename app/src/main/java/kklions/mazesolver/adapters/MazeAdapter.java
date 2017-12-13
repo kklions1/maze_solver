@@ -39,40 +39,40 @@ public class MazeAdapter {
     }
 
     /**
-     *
      *  data manager generates the maze, and then draws the maze to the UI
      */
     public void initMaze() {
         dataManager.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
-        mazeLayout = fragmentView.findViewById(R.id.maze_display_view);
+        mazeLayout = fragmentView.findViewById(R.id.maze_view);
 
+        initializeGridLayout();
+        drawMaze();
+    }
+
+    private void initializeGridLayout() {
         for (int row = 0; row < configuration.getHeight(); row++) {
             for (int col = 0; col < configuration.getWidth(); col++) {
                 mazeColors[row][col] = new TextView(context);
-              //  mazeColors[row][col].setLayoutParams(new ViewGroup.LayoutParams(GridLayout.LayoutParams.MATCH_PARENT,
-                 //               GridLayout.LayoutParams.MATCH_PARENT));
-                mazeLayout.addView(mazeColors[row][col], row, col);
+                mazeColors[row][col].setLayoutParams(new ViewGroup.LayoutParams(GridLayout.LayoutParams.MATCH_PARENT,
+                        GridLayout.LayoutParams.MATCH_PARENT));
+                mazeLayout.addView(mazeColors[row][col], 50, 50);
             }
         }
+    }
 
+    private void drawMaze() {
         for (int row = 0; row < configuration.getHeight(); row++) {
             for (int col = 0; col < configuration.getWidth(); col++) {
-                if (col == 0) {
-                    if (!dataManager.getMazeCell(row, col).right) {
-                        mazeColors[row][col + 1].setBackgroundColor(Color.BLACK);
-                        //mazeColors[row][col + 1].setVisibility(View.VISIBLE);
-                    }
-                } else if (!dataManager.getMazeCell(row, col).left) {
-                    mazeColors[row][col - 1].setBackgroundColor(Color.BLACK);
-                   // mazeColors[row][col - 1].setVisibility(View.VISIBLE);
+                if (row % 2 == 0 && col % 2 == 0) {
+                    mazeColors[row][col].setBackgroundColor(Color.BLACK);
+                } else {
+                    mazeColors[row][col].setBackgroundColor(Color.WHITE);
                 }
             }
         }
-
-        mazeLayout.setVisibility(View.VISIBLE);
     }
 
-    public void solveMaze() {
+    private void solveMaze() {
         // TODO figure out how to run different methods on the async tasks
         switch (configuration.getMethod()) {
             case Algorithm.BFS:

@@ -10,6 +10,7 @@ import kklions.mazesolver.R;
 
 /**
  * Fragment for displaying the maze
+ * Currently Unused
  *
  * Created by kliok002 on 11/18/17.
  */
