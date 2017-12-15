@@ -37,7 +37,9 @@ public class MazeSolveFragment extends Fragment {
         return fragment;
     }
 
-    public MazeSolveFragment() { }
+    public MazeSolveFragment() {
+        // No-op
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

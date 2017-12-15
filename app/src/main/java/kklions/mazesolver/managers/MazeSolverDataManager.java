@@ -25,10 +25,18 @@ import kklions.mazesolver.model.Point;
 public class MazeSolverDataManager {
 
     private Cell[][] maze;
+    private Point start;
+    private Point end;
+    private int height;
+    private int width;
 
     public Cell getMazeCell(int row, int col) {
         return maze[row][col];
     }
+
+    public Point getStart() { return this.start; }
+
+    public Point getEnd() { return this.end; }
 
     // Maze Generation
     public void generateMaze(int height, int width, float percentageMissing) {
@@ -166,6 +174,25 @@ public class MazeSolverDataManager {
 
     // Solving algorithms
 
+    public void findStartAndEnd() {
+        // TODO figure out how I want this to work
+//        // Find the start of the maze
+//        for (int i = 0; i < width; ++i) {
+//            if (maze[0][i].top) {
+//                this.start = new Point(0, i);
+//                break;
+//            }
+//        }
+//
+//        // Find the end of the maze
+//        for (int i = 0; i < width; ++i) {
+//            if (maze[height - 1][i].bottom) {
+//                end = new Point(height - 1, i);
+//                break;
+//            }
+//        }
+    }
+
     public List<Direction> solveBreadthFirstSearch(int height, int width) {
         Point start = null;
         Point end = null;
@@ -180,36 +207,6 @@ public class MazeSolverDataManager {
                 visited[row][col] = false;
 //                distance[row][col] = Integer.MAX_VALUE;
             }
-        }
-
-        try {
-            // Find the start of the maze
-            for (int i = 0; i < width; ++i) {
-                if (maze[0][i].top) {
-                    start = new Point(0, i);
-                    break;
-                }
-            }
-
-            // Find the end of the maze
-            for (int i = 0; i < width; ++i) {
-                if (maze[height - 1][i].bottom) {
-                    end = new Point(height - 1, i);
-                    break;
-                }
-            }
-
-            // If no start or end was found, throw an exception
-            if (start == null) {
-                throw new Exception("no start found");
-            }
-            if (end == null) {
-                throw new Exception("no end found");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
 
         // Set up the information for the starting point
@@ -309,6 +306,7 @@ public class MazeSolverDataManager {
         int[][] distance = new int[height][width];
         Point[][] predecessor = new Point[height][width];
 
+        // The reason this is best first search instead of A* is in part because of the comparator in this priority queue
         PriorityQueue<Point> queue = new PriorityQueue<>((point1, point2) -> {
                 if (absoluteDistance[point1.getRow()][point1.getCol()] > absoluteDistance[point2.getRow()][point2.getCol()]) {
                     return 1;
@@ -317,37 +315,8 @@ public class MazeSolverDataManager {
                 } else {
                     return 0;
                 }
-            });
-
-        try {
-            // Find the start of the maze
-            for (int i = 0; i < width; ++i) {
-                if (maze[0][i].top) {
-                    start = new Point(0, i);
-                    break;
-                }
             }
-
-            // Find the end of the maze
-            for (int i = 0; i < width; ++i) {
-                if (maze[height - 1][i].bottom) {
-                    end = new Point(height - 1, i);
-                    break;
-                }
-            }
-
-            // If no start or end was found, throw an exception
-            if (start == null) {
-                throw new Exception("no start found");
-            }
-            if (end == null) {
-                throw new Exception("no end found");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        );
 
         // Inititalize visited, the heuristic, and initial distances
         for (int row = 0; row < height; ++row) {

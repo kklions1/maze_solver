@@ -49,8 +49,9 @@ public class OptionsFragment extends Fragment {
             EditText timeInterval = fragmentView.findViewById(R.id.solve_time_delay);
 
             MazeConfiguration configuration = new MazeConfiguration.Builder()
-                    .setHeight(Integer.parseInt(mazeHeight.getText().toString()))
-                    .setWidth(Integer.parseInt(mazeWidth.getText().toString()))
+                    // adding two so that there will be extra space for a black border around the maze
+                    .setHeight(Integer.parseInt(mazeHeight.getText().toString()) + 2)
+                    .setWidth(Integer.parseInt(mazeWidth.getText().toString()) + 2)
                     .setInterval(Integer.parseInt(timeInterval.getText().toString()))
                     .setMethod(Algorithm.BFS)
                     .setPercentMissing(0)

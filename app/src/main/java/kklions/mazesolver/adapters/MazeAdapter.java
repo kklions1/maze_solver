@@ -48,7 +48,9 @@ public class MazeAdapter {
         mazeLayout = fragmentView.findViewById(R.id.maze_view);
 
         initializeGridLayout();
-        drawMaze();
+       // drawMaze();
+        drawMazeThree();
+//        drawMazeLikeDavin();
     }
 
     private void initializeGridLayout() {
@@ -68,20 +70,66 @@ public class MazeAdapter {
                 mazeColors[row][col].setLayoutParams(new ViewGroup.LayoutParams(GridLayout.LayoutParams.MATCH_PARENT,
                         GridLayout.LayoutParams.MATCH_PARENT));
                 mazeLayout.addView(mazeColors[row][col], cellWidth, cellHeight);
+
+                // Set the default color of the border to black
+                if (row == 0 || col == 0 || row == configuration.getHeight() - 1 || col == configuration.getWidth() - 1) {
+                    mazeColors[row][col].setBackgroundColor(Color.BLACK);
+                }
             }
         }
     }
 
     private void drawMaze() {
+        dataManager.findStartAndEnd();
         for (int row = 0; row < configuration.getHeight(); row++) {
             for (int col = 0; col < configuration.getWidth(); col++) {
-                if (row % 2 == 0 && col % 2 == 0) {
-                    mazeColors[row][col].setBackgroundColor(Color.BLACK);
+                if (col == 0) {
+                    if (!dataManager.getMazeCell(row, col).right) {
+                        mazeColors[row][col + 1].setBackgroundColor(Color.BLACK);
+                    }
                 } else {
-                    mazeColors[row][col].setBackgroundColor(Color.WHITE);
+                    if (!dataManager.getMazeCell(row, col).left) {
+                        mazeColors[row][col - 1].setBackgroundColor(Color.BLACK);
+                    }
                 }
             }
         }
+    }
+
+    private void drawMazeLikeDavin() {
+        // find entrance
+        int y = 0;
+        int x;
+        for (x = 0; x < configuration.getWidth(); x++) {
+            if (dataManager.getMazeCell(x, y).top) {
+                break;
+            }
+        }
+
+        for (int row = 0; row < configuration.getHeight(); row++) {
+            // Top
+            for (int col = 0; col < configuration.getWidth(); col++) {
+                mazeColors[row][col].setBackgroundColor(Color.BLACK);
+                // Why did I write it this way?
+                if (dataManager.getMazeCell(row, col).top) {
+                    mazeColors[row][col].setBackgroundColor(Color.WHITE);
+                }
+            }
+
+            // Side
+            for (int col = 1; col < configuration.getWidth(); col++) {
+                if (!dataManager.getMazeCell(row, col).left) {
+                    mazeColors[row][col].setBackgroundColor(Color.BLACK);
+                }
+            }
+
+        }
+    }
+
+    private void drawMazeThree() {
+        // Draw the border
+
+
     }
 
     private void solveMaze() {
