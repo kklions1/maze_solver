@@ -63,6 +63,13 @@ public class MazeSolveFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dataManager.setMazeDimensions(configuration.getHeight(), configuration.getWidth());
+        dataManager.findStartAndEnd();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.maze_view, container, false);

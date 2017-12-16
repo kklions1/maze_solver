@@ -38,6 +38,12 @@ public class MazeSolverDataManager {
 
     public Point getEnd() { return this.end; }
 
+    public void setMazeDimensions(int height, int width) {
+        // Like earlier, we subtract 2 to account for the border on the UI
+        this.height = height - 2;
+        this.width = width - 2;
+    }
+
     // Maze Generation
     public void generateMaze(int height, int width, float percentageMissing) {
 
@@ -176,21 +182,21 @@ public class MazeSolverDataManager {
 
     public void findStartAndEnd() {
         // TODO figure out how I want this to work
-//        // Find the start of the maze
-//        for (int i = 0; i < width; ++i) {
-//            if (maze[0][i].top) {
-//                this.start = new Point(0, i);
-//                break;
-//            }
-//        }
-//
-//        // Find the end of the maze
-//        for (int i = 0; i < width; ++i) {
-//            if (maze[height - 1][i].bottom) {
-//                end = new Point(height - 1, i);
-//                break;
-//            }
-//        }
+        // Find the start of the maze
+        for (int i = 0; i < width; ++i) {
+            if (maze[0][i].top) {
+                this.start = new Point(0, i);
+                break;
+            }
+        }
+
+        // Find the end of the maze
+        for (int i = 0; i < width; ++i) {
+            if (maze[height - 1][i].bottom) {
+                end = new Point(height - 1, i);
+                break;
+            }
+        }
     }
 
     public List<Direction> solveBreadthFirstSearch(int height, int width) {
