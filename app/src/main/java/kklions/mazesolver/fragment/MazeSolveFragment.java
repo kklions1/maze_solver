@@ -1,6 +1,5 @@
-package kklions.mazesolver.fragments;
+package kklions.mazesolver.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 
 import kklions.mazesolver.R;
-import kklions.mazesolver.adapters.MazeAdapter;
-import kklions.mazesolver.managers.MazeSolverDataManager;
-import kklions.mazesolver.managers.accessors.DataManagerAccessor;
+import kklions.mazesolver.controller.MazeController;
+import kklions.mazesolver.manager.MazeSolverDataManager;
+import kklions.mazesolver.manager.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -27,7 +26,7 @@ public class MazeSolveFragment extends Fragment {
     private View fragmentView;
     private MazeConfiguration configuration;
     private MazeSolverDataManager dataManager;
-    private MazeAdapter mazeAdapter;
+    private MazeController mazeController;
 
     public static MazeSolveFragment newInstance(MazeConfiguration configuration) {
         Bundle bundle = new Bundle();
@@ -63,21 +62,21 @@ public class MazeSolveFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        dataManager.setMazeDimensions(configuration.getHeight(), configuration.getWidth());
-        dataManager.findStartAndEnd();
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.maze_view, container, false);
         GridLayout mazeDisplay = fragmentView.findViewById(R.id.maze_view);
         mazeDisplay.setColumnCount(configuration.getWidth());
         mazeDisplay.setRowCount(configuration.getHeight());
-        mazeAdapter = new MazeAdapter(configuration, dataManager, fragmentView, getContext());
-        mazeAdapter.initMaze();
+
+        mazeController = new MazeController(configuration, dataManager, fragmentView, getContext());
+        mazeController.initMazeView();
         return fragmentView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mazeController.solveMaze();
     }
 }

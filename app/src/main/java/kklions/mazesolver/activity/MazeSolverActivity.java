@@ -6,10 +6,10 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import kklions.mazesolver.R;
-import kklions.mazesolver.fragments.MazeSolveFragment;
-import kklions.mazesolver.fragments.OptionsFragment;
-import kklions.mazesolver.managers.MazeSolverDataManager;
-import kklions.mazesolver.managers.accessors.DataManagerAccessor;
+import kklions.mazesolver.fragment.MazeSolveFragment;
+import kklions.mazesolver.fragment.OptionsFragment;
+import kklions.mazesolver.manager.MazeSolverDataManager;
+import kklions.mazesolver.manager.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**

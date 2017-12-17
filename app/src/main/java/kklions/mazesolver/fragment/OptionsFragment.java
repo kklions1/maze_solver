@@ -1,4 +1,4 @@
-package kklions.mazesolver.fragments;
+package kklions.mazesolver.fragment;
 
 import android.app.Fragment;
 import android.content.Context;

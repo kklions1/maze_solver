@@ -1,4 +1,4 @@
-package kklions.mazesolver.adapters;
+package kklions.mazesolver.controller;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
-import kklions.mazesolver.managers.MazeSolverDataManager;
+import kklions.mazesolver.manager.MazeSolverDataManager;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -21,7 +21,7 @@ import kklions.mazesolver.model.MazeConfiguration;
  * Created by Kevin Klions on 11/18/17.
  */
 
-public class MazeAdapter {
+public class MazeController {
 
     private final MazeSolverDataManager dataManager;
     private MazeConfiguration configuration;
@@ -31,8 +31,8 @@ public class MazeAdapter {
     private TextView[][] mazeColors;
 
 
-    public MazeAdapter(@NonNull MazeConfiguration configuration, @NonNull MazeSolverDataManager dataManager, @NonNull View fragmentView,
-                       @NonNull Context context) {
+    public MazeController(@NonNull MazeConfiguration configuration, @NonNull MazeSolverDataManager dataManager, @NonNull View fragmentView,
+                          @NonNull Context context) {
         this.configuration = configuration;
         this.fragmentView = fragmentView;
         this.dataManager = dataManager;
@@ -41,17 +41,26 @@ public class MazeAdapter {
     }
 
     /**
-     *  data manager generates the maze, and then draws the maze to the UI
+     * Method sets up the maze in the data manager
      */
-    public void initMaze() {
-        dataManager.generateMaze(configuration.getHeight(), configuration.getWidth(), configuration.getPercentMissing());
-        mazeLayout = fragmentView.findViewById(R.id.maze_view);
-
-        initializeGridLayout();
+    public void initMazeView() {
+        initDataManager();
+        initFragmentView();
+        initGridLayout();
         drawMaze();
     }
 
-    private void initializeGridLayout() {
+    private void initFragmentView() {
+        mazeLayout = fragmentView.findViewById(R.id.maze_view);
+    }
+
+    private void initDataManager() {
+        dataManager.setMazeDimensions(configuration.getHeight(), configuration.getWidth());
+        dataManager.generateMaze(configuration.getPercentMissing());
+        dataManager.findStartAndEnd();
+    }
+
+    private void initGridLayout() {
 
         // Get Screen Size and calculate the size of a cell to fill the screen
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -91,7 +100,7 @@ public class MazeAdapter {
         }
     }
 
-    private void solveMaze() {
+    public void solveMaze() {
         // TODO figure out how to run different methods on the async tasks
         switch (configuration.getMethod()) {
             case Algorithm.BFS:

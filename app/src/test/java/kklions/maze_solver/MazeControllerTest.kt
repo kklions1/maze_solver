@@ -9,7 +9,7 @@ import org.junit.Test
  * Created by kliok002 on 12/5/17.
  */
 
-class MazeAdapterTest {
+class MazeControllerTest {
 
     @Test
     fun testConfiguration() {

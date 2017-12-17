@@ -1,4 +1,4 @@
-package kklions.mazesolver.managers;
+package kklions.mazesolver.manager;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -44,9 +44,8 @@ public class MazeSolverDataManager {
         this.width = width - 2;
     }
 
-    // Maze Generation
-    public void generateMaze(int height, int width, float percentageMissing) {
-
+    // Maze Generation this method also stores the height and width
+    public void generateMaze(float percentageMissing) {
         Cell[][] maze = new Cell[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
