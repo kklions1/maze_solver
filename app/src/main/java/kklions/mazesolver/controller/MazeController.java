@@ -88,14 +88,16 @@ public class MazeController {
 
     private void drawMaze() {
         // set the colors for the start and end
-        // TODO fix a NullPointer Exception here
         mazeColors[0][dataManager.getStart().getCol()].setBackgroundColor(Color.WHITE);
         mazeColors[configuration.getHeight() - 1][dataManager.getEnd().getCol()].setBackgroundColor(Color.WHITE);
 
+        // TODO draw the actual damn maze 
         // Indices start at 1 to account for the border drawn around the maze
-        for (int row = 1; row < configuration.getHeight(); row++) {
-            for (int col = 1; col < configuration.getWidth(); col++) {
-
+        for (int row = 1; row < configuration.getHeight() - 1; row++) {
+            for (int col = 1; col < configuration.getWidth() - 1; col++) {
+                if (dataManager.getMazeCell(row - 1, col - 1).left) {
+                    mazeColors[row][col - 1].setBackgroundColor(Color.BLACK);
+                }
             }
         }
     }
