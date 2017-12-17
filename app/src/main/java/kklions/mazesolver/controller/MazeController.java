@@ -48,9 +48,7 @@ public class MazeAdapter {
         mazeLayout = fragmentView.findViewById(R.id.maze_view);
 
         initializeGridLayout();
-       // drawMaze();
-        drawMazeThree();
-//        drawMazeLikeDavin();
+        drawMaze();
     }
 
     private void initializeGridLayout() {
@@ -80,53 +78,6 @@ public class MazeAdapter {
     }
 
     private void drawMaze() {
-        dataManager.findStartAndEnd();
-        for (int row = 0; row < configuration.getHeight(); row++) {
-            for (int col = 0; col < configuration.getWidth(); col++) {
-                if (col == 0) {
-                    if (!dataManager.getMazeCell(row, col).right) {
-                        mazeColors[row][col + 1].setBackgroundColor(Color.BLACK);
-                    }
-                } else {
-                    if (!dataManager.getMazeCell(row, col).left) {
-                        mazeColors[row][col - 1].setBackgroundColor(Color.BLACK);
-                    }
-                }
-            }
-        }
-    }
-
-    private void drawMazeLikeDavin() {
-        // find entrance
-        int y = 0;
-        int x;
-        for (x = 0; x < configuration.getWidth(); x++) {
-            if (dataManager.getMazeCell(x, y).top) {
-                break;
-            }
-        }
-
-        for (int row = 0; row < configuration.getHeight(); row++) {
-            // Top
-            for (int col = 0; col < configuration.getWidth(); col++) {
-                mazeColors[row][col].setBackgroundColor(Color.BLACK);
-                // Why did I write it this way?
-                if (dataManager.getMazeCell(row, col).top) {
-                    mazeColors[row][col].setBackgroundColor(Color.WHITE);
-                }
-            }
-
-            // Side
-            for (int col = 1; col < configuration.getWidth(); col++) {
-                if (!dataManager.getMazeCell(row, col).left) {
-                    mazeColors[row][col].setBackgroundColor(Color.BLACK);
-                }
-            }
-
-        }
-    }
-
-    private void drawMazeThree() {
         // set the colors for the start and end
         // TODO fix a NullPointer Exception here
         mazeColors[0][dataManager.getStart().getCol()].setBackgroundColor(Color.WHITE);
