@@ -39,10 +39,7 @@ public class MazeController {
         this.context = context;
         mazeColors = new TextView[configuration.getHeight()][configuration.getWidth()];
     }
-
-    /**
-     * Method sets up the maze in the data manager
-     */
+    
     public void initMazeView() {
         initDataManager();
         initFragmentView();
@@ -52,6 +49,8 @@ public class MazeController {
 
     private void initFragmentView() {
         mazeLayout = fragmentView.findViewById(R.id.maze_view);
+        mazeLayout.setColumnCount(configuration.getWidth());
+        mazeLayout.setRowCount(configuration.getHeight());
     }
 
     private void initDataManager() {
@@ -91,7 +90,7 @@ public class MazeController {
         mazeColors[0][dataManager.getStart().getCol()].setBackgroundColor(Color.WHITE);
         mazeColors[configuration.getHeight() - 1][dataManager.getEnd().getCol()].setBackgroundColor(Color.WHITE);
 
-        // TODO draw the actual damn maze 
+        // TODO draw the actual damn maze
         // Indices start at 1 to account for the border drawn around the maze
         for (int row = 1; row < configuration.getHeight() - 1; row++) {
             for (int col = 1; col < configuration.getWidth() - 1; col++) {
