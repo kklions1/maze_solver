@@ -1,4 +1,4 @@
-package kklions.mazesolver.controller;
+package kklions.mazesolver.presenter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
 import kklions.mazesolver.manager.MazeSolverDataManager;
+import kklions.mazesolver.manager.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -21,8 +22,7 @@ import kklions.mazesolver.model.MazeConfiguration;
  * Created by Kevin Klions on 11/18/17.
  */
 
-public class MazeController {
-
+public class MazePresenter {
     private final MazeSolverDataManager dataManager;
     private MazeConfiguration configuration;
     private View fragmentView;
@@ -31,15 +31,23 @@ public class MazeController {
     private TextView[][] mazeColors;
 
 
-    public MazeController(@NonNull MazeConfiguration configuration, @NonNull MazeSolverDataManager dataManager, @NonNull View fragmentView,
-                          @NonNull Context context) {
+    public MazePresenter(@NonNull MazeConfiguration configuration, @NonNull View fragmentView,
+                         @NonNull Context context) {
         this.configuration = configuration;
         this.fragmentView = fragmentView;
-        this.dataManager = dataManager;
         this.context = context;
+
         mazeColors = new TextView[configuration.getHeight()][configuration.getWidth()];
+
+        // Get the data manager
+        try {
+            dataManager = ((DataManagerAccessor) context).provideDataManager();
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("The Activity does not implement the correct provider");
+        }
     }
-    
+
     public void initMazeView() {
         initDataManager();
         initFragmentView();
@@ -60,7 +68,6 @@ public class MazeController {
     }
 
     private void initGridLayout() {
-
         // Get Screen Size and calculate the size of a cell to fill the screen
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -89,16 +96,6 @@ public class MazeController {
         // set the colors for the start and end
         mazeColors[0][dataManager.getStart().getCol()].setBackgroundColor(Color.WHITE);
         mazeColors[configuration.getHeight() - 1][dataManager.getEnd().getCol()].setBackgroundColor(Color.WHITE);
-
-        // TODO draw the actual damn maze
-        // Indices start at 1 to account for the border drawn around the maze
-        for (int row = 1; row < configuration.getHeight() - 1; row++) {
-            for (int col = 1; col < configuration.getWidth() - 1; col++) {
-                if (dataManager.getMazeCell(row - 1, col - 1).left) {
-                    mazeColors[row][col - 1].setBackgroundColor(Color.BLACK);
-                }
-            }
-        }
     }
 
     public void solveMaze() {

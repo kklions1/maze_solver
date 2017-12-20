@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 
 import kklions.mazesolver.R;
-import kklions.mazesolver.controller.MazeController;
+import kklions.mazesolver.presenter.MazePresenter;
 import kklions.mazesolver.manager.MazeSolverDataManager;
 import kklions.mazesolver.manager.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
@@ -25,8 +24,7 @@ public class MazeSolveFragment extends Fragment {
     private static final String configurationKey = "configuration";
     private View fragmentView;
     private MazeConfiguration configuration;
-    private MazeSolverDataManager dataManager;
-    private MazeController mazeController;
+    private MazePresenter mazePresenter;
 
     public static MazeSolveFragment newInstance(MazeConfiguration configuration) {
         Bundle bundle = new Bundle();
@@ -51,28 +49,17 @@ public class MazeSolveFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            dataManager = ((DataManagerAccessor) context).provideDataManager();
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-            throw new IllegalStateException("The Activity does not implement the correct provider");
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.maze_view_layout, container, false);
-        mazeController = new MazeController(configuration, dataManager, fragmentView, getContext());
-        mazeController.initMazeView();
+        mazePresenter = new MazePresenter(configuration, fragmentView, getContext());
+        mazePresenter.initMazeView();
         return fragmentView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mazeController.solveMaze();
+        mazePresenter.solveMaze();
     }
 }
