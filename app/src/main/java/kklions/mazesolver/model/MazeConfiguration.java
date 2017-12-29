@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Class used to transfer data regarding configuration data for the maze solving screen'
  * This may be refactored based on conversations with Davin later
  *
- * Created by kliok002 on 11/28/17.
+ * Created by Kevin Klions on 11/28/17.
  */
 
 public class MazeConfiguration implements Serializable {

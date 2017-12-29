@@ -16,7 +16,7 @@ import kklions.mazesolver.model.MazeConfiguration;
 /**
  * Landing screen for application, configure maze
  *
- * Created by kliok002 on 11/18/17.
+ * Created by Kevin Klions on 11/18/17.
  */
 
 public class OptionsFragment extends Fragment {

@@ -19,7 +19,7 @@ import kklions.mazesolver.model.Point;
 /**
  * Data Manager for maze solver application
  *
- * Created by kliok002 on 11/14/17.
+ * Created by Kevin Klions on 11/14/17.
  */
 
 public class MazeSolverDataManager {

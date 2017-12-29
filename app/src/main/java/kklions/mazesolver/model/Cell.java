@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Space in the maze
  *
- * Created by kliok002 on 11/18/17.
+ * Created by Kevin Klions on 11/18/17.
  */
 
 public class Cell implements Serializable {
