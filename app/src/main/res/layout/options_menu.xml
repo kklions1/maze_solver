@@ -61,6 +61,11 @@
         android:layout_marginRight="8dp"
         android:text="@string/solve_time_interval_default"/>
 
+    <ExpandableListView
+        android:id="@+id/method_picker"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
     <Button
         android:id="@+id/confirm_settings"
         android:layout_width="match_parent"

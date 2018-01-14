@@ -6,7 +6,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import kklions.mazesolver.R;
-import kklions.mazesolver.fragment.MazeSolveFragment;
+import kklions.mazesolver.fragment.MazeFragment;
 import kklions.mazesolver.fragment.OptionsFragment;
 import kklions.mazesolver.manager.MazeSolverDataManager;
 import kklions.mazesolver.manager.accessors.DataManagerAccessor;
@@ -41,7 +41,7 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Navi
     public void navigateToSolveScreen(MazeConfiguration configuration) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, MazeSolveFragment.newInstance(configuration));
+        transaction.replace(R.id.fragment_layout_holder, MazeFragment.newInstance(configuration));
         transaction.addToBackStack(null);
         transaction.commit();
     }

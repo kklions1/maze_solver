@@ -25,16 +25,16 @@ import kklions.mazesolver.model.MazeConfiguration;
 public class MazePresenter {
     private final MazeSolverDataManager dataManager;
     private MazeConfiguration configuration;
-    private View fragmentView;
+    private View view;
     private Context context;
     private GridLayout mazeLayout;
     private TextView[][] mazeColors;
 
 
-    public MazePresenter(@NonNull MazeConfiguration configuration, @NonNull View fragmentView,
+    public MazePresenter(@NonNull MazeConfiguration configuration, @NonNull View view,
                          @NonNull Context context) {
         this.configuration = configuration;
-        this.fragmentView = fragmentView;
+        this.view = view;
         this.context = context;
 
         mazeColors = new TextView[configuration.getHeight()][configuration.getWidth()];
@@ -56,7 +56,7 @@ public class MazePresenter {
     }
 
     private void initFragmentView() {
-        mazeLayout = fragmentView.findViewById(R.id.maze_view);
+        mazeLayout = view.findViewById(R.id.maze_view);
         mazeLayout.setColumnCount(configuration.getWidth());
         mazeLayout.setRowCount(configuration.getHeight());
     }
@@ -116,4 +116,3 @@ public class MazePresenter {
         }
     }
 }
-

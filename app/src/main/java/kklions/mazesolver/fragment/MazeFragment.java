@@ -1,7 +1,6 @@
 package kklions.mazesolver.fragment;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,6 @@ import android.view.ViewGroup;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.presenter.MazePresenter;
-import kklions.mazesolver.manager.MazeSolverDataManager;
-import kklions.mazesolver.manager.accessors.DataManagerAccessor;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -19,22 +16,21 @@ import kklions.mazesolver.model.MazeConfiguration;
  * Created by Kevin Klions on 11/18/17.
  */
 
-public class MazeSolveFragment extends Fragment {
+public class MazeFragment extends Fragment {
 
     private static final String configurationKey = "configuration";
-    private View fragmentView;
     private MazeConfiguration configuration;
     private MazePresenter mazePresenter;
 
-    public static MazeSolveFragment newInstance(MazeConfiguration configuration) {
+    public static MazeFragment newInstance(MazeConfiguration configuration) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(configurationKey, configuration);
-        MazeSolveFragment fragment = new MazeSolveFragment();
+        MazeFragment fragment = new MazeFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    public MazeSolveFragment() {
+    public MazeFragment() {
         // No-op
     }
 
@@ -51,7 +47,7 @@ public class MazeSolveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentView = inflater.inflate(R.layout.maze_view_layout, container, false);
+        View fragmentView = inflater.inflate(R.layout.maze_view_layout, container, false);
         mazePresenter = new MazePresenter(configuration, fragmentView, getContext());
         mazePresenter.initMazeView();
         return fragmentView;
