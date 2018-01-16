@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
@@ -68,5 +71,15 @@ public class OptionsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         navigationListener = (NavigationListener) context;
+    }
+
+    private void initMethodPicker() {
+        Spinner methodPicker = fragmentView.findViewById(R.id.method_picker);
+
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.solve_methods, R.layout.method_picker_layout);
+
+        methodPicker.setOnItemClickListener((parentAdapterView, view, position, id) -> {
+            // TODO implement event listener, it should send the selected method to the MazeConfiguration
+        });
     }
 }

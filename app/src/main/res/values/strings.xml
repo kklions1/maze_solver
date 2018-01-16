@@ -13,6 +13,16 @@
     <string name="confirm_button">Confirm</string>
     <string name="solve_time_interval">Maze Step Time (ms)</string>
 
+    <string-array name="solve_methods">
+        <item>Breadth-First Search</item>
+        <item>Depth-First Search</item>
+        <item>A*</item>
+        <item>Best-First Search</item>
+    </string-array>
+
     <!-- Maze Solve screen Strings -->
+
+
+
 
 </resources>
