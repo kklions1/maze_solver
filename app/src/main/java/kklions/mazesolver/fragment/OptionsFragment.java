@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
@@ -26,6 +27,7 @@ public class OptionsFragment extends Fragment {
 
     private View fragmentView;
     private NavigationListener navigationListener;
+    private String solveMethod;
 
     public static OptionsFragment newInstance() {
         return new OptionsFragment();
@@ -59,7 +61,11 @@ public class OptionsFragment extends Fragment {
                     .setMethod(Algorithm.BFS)
                     .setPercentMissing(0)
                     .build();
-            navigationListener.navigateToSolveScreen(configuration);
+            if (configuration.getMethod() == null) {
+                Toast.makeText(getContext(), "Please select a solve method", Toast.LENGTH_SHORT).show();
+            } else {
+                navigationListener.navigateToSolveScreen(configuration);
+            }
         });
     }
 
@@ -80,6 +86,7 @@ public class OptionsFragment extends Fragment {
 
         methodPicker.setOnItemClickListener((parentAdapterView, view, position, id) -> {
             // TODO implement event listener, it should send the selected method to the MazeConfiguration
+
         });
     }
 }

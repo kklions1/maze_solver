@@ -12,7 +12,10 @@
     <string name="solve_time_interval_default">500</string>
     <string name="confirm_button">Confirm</string>
     <string name="solve_time_interval">Maze Step Time (ms)</string>
+    <string name="maze_percent_missing">Percent Missing</string>
+    <string name="maze_percent_missing_default">0</string>
 
+    <string name="solve_method_prompt">Solve Method</string>
     <string-array name="solve_methods">
         <item>Breadth-First Search</item>
         <item>Depth-First Search</item>

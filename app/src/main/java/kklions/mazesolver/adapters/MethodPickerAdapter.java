@@ -47,7 +47,7 @@ public class MethodPickerAdapter implements SpinnerAdapter {
     public void unregisterDataSetObserver(DataSetObserver observer) {
 
     }
-    
+
     public View getView(int position, View convertView, ViewGroup parent) {
         return null;
     }
