@@ -25,6 +25,9 @@
 
     <!-- Maze Solve screen Strings -->
 
+    <!-- Loading Screen Strings --> 
+    <string name="generating_maze_text">Generating Maze...</string>
+    <string name="solving_maze_text">Solving Maze...</string>
 
 
 

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
+import kklions.mazesolver.manager.MazeSolverDataManager;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -26,8 +26,9 @@ import kklions.mazesolver.model.MazeConfiguration;
 public class OptionsFragment extends Fragment {
 
     private View fragmentView;
-    private NavigationListener navigationListener;
+    private OptionsNavigationListener optionsNavigationListener;
     private String solveMethod;
+    private MazeSolverDataManager dataManager;
 
     public static OptionsFragment newInstance() {
         return new OptionsFragment();
@@ -48,6 +49,7 @@ public class OptionsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         Button confirmButton = fragmentView.findViewById(R.id.confirm_settings);
+
         confirmButton.setOnClickListener((view) -> {
             EditText mazeHeight = fragmentView.findViewById(R.id.maze_height_entry);
             EditText mazeWidth = fragmentView.findViewById(R.id.maze_width_entry);
@@ -61,32 +63,42 @@ public class OptionsFragment extends Fragment {
                     .setMethod(Algorithm.BFS)
                     .setPercentMissing(0)
                     .build();
-            if (configuration.getMethod() == null) {
-                Toast.makeText(getContext(), "Please select a solve method", Toast.LENGTH_SHORT).show();
-            } else {
-                navigationListener.navigateToSolveScreen(configuration);
-            }
-        });
-    }
 
-    public interface NavigationListener {
-        void navigateToSolveScreen(MazeConfiguration configuration);
+            optionsNavigationListener.navigateToLoadingScreen(configuration);
+        });
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        navigationListener = (NavigationListener) context;
+        optionsNavigationListener = (OptionsNavigationListener) context;
     }
 
     private void initMethodPicker() {
         Spinner methodPicker = fragmentView.findViewById(R.id.method_picker);
 
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.solve_methods, R.layout.method_picker_layout);
-
         methodPicker.setOnItemClickListener((parentAdapterView, view, position, id) -> {
             // TODO implement event listener, it should send the selected method to the MazeConfiguration
-
+            String selected = (String) parentAdapterView.getItemAtPosition(position);
+            Toast.makeText(getContext(), "The item you selected is " + selected, Toast.LENGTH_SHORT).show();
         });
+
+        methodPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = (String) parent.getItemAtPosition(position);
+                Toast.makeText(parent.getContext(), "an item has been selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public interface OptionsNavigationListener {
+        void navigateToLoadingScreen(MazeConfiguration configuration);
     }
 }
