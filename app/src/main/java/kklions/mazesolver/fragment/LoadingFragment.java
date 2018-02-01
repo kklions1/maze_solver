@@ -54,6 +54,7 @@ public class LoadingFragment extends BaseFragment {
         return view;
     }
 
+    // TODO figure out if this causes memory leaks and devise a better way to do this
     private class GenerateMazeAsync extends AsyncTask<MazeConfiguration, String, Void> {
         @Override
         public Void doInBackground(MazeConfiguration... configurations) {
