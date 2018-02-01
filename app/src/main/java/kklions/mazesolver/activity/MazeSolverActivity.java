@@ -44,6 +44,7 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Opti
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fragment_layout_holder, LoadingFragment.newInstance(configuration));
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -53,7 +54,6 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Opti
         FragmentTransaction transaction = manager.beginTransaction();
         // configuration is passed through to the loading fragment because im not sure what the best way to handle this is yet
         transaction.replace(R.id.fragment_layout_holder, MazeFragment.newInstance(configuration));
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 

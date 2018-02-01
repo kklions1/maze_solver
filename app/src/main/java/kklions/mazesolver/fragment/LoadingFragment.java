@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import kklions.mazesolver.R;
+import kklions.mazesolver.enums.Algorithm;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -71,7 +72,28 @@ public class LoadingFragment extends BaseFragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-//            dataManager.solveBreadthFirstSearch(configuration.getHeight(), configuration.getWidth());
+//            switch (configuration.getMethod()) {
+//                case Algorithm.BFS:
+//                    dataManager.solveBreadthFirstSearch(configuration.getHeight(), configuration.getWidth());
+//                    break;
+//
+//                case Algorithm.ASTAR:
+//                    dataManager.solveAStar(configuration.getHeight(), configuration.getWidth());
+//                    break;
+//
+//                case Algorithm.DFS:
+//                    dataManager.solveDepthFirstSearch(configuration.getHeight(), configuration.getWidth());
+//                    break;
+//
+//                case Algorithm.BESTFIRST:
+//                    dataManager.solveBestFirstSearch(configuration.getHeight(), configuration.getWidth());
+//                    break;
+//
+//                default:
+//                    dataManager.solveBreadthFirstSearch(configuration.getHeight(), configuration.getWidth());
+//                    break;
+//            }
+
             return null;
         }
 
