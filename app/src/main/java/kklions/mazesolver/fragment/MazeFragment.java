@@ -1,6 +1,5 @@
 package kklions.mazesolver.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +15,10 @@ import kklions.mazesolver.model.MazeConfiguration;
  * Created by Kevin Klions on 11/18/17.
  */
 
-public class MazeFragment extends Fragment {
+public class MazeFragment extends BaseFragment {
 
-    private static final String configurationKey = "configuration";
-    private MazeConfiguration configuration;
+//    private static final String configurationKey = "configuration";
+//    private MazeConfiguration configuration;
     private MazePresenter mazePresenter;
 
     public static MazeFragment newInstance(MazeConfiguration configuration) {

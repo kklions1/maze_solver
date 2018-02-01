@@ -1,6 +1,5 @@
 package kklions.mazesolver.fragment;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.enums.Algorithm;
-import kklions.mazesolver.manager.MazeSolverDataManager;
 import kklions.mazesolver.model.MazeConfiguration;
 
 /**
@@ -23,12 +21,12 @@ import kklions.mazesolver.model.MazeConfiguration;
  * Created by Kevin Klions on 11/18/17.
  */
 
-public class OptionsFragment extends Fragment {
+public class OptionsFragment extends BaseFragment {
 
-    private View fragmentView;
+//    private View view;
     private OptionsNavigationListener optionsNavigationListener;
     private String solveMethod;
-    private MazeSolverDataManager dataManager;
+//    private MazeSolverDataManager dataManager;
 
     public static OptionsFragment newInstance() {
         return new OptionsFragment();
@@ -41,19 +39,19 @@ public class OptionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentView = inflater.inflate(R.layout.options_menu, container, false);
-        return fragmentView;
+        view = inflater.inflate(R.layout.options_menu, container, false);
+        return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Button confirmButton = fragmentView.findViewById(R.id.confirm_settings);
+        Button confirmButton = view.findViewById(R.id.confirm_settings);
 
         confirmButton.setOnClickListener((view) -> {
-            EditText mazeHeight = fragmentView.findViewById(R.id.maze_height_entry);
-            EditText mazeWidth = fragmentView.findViewById(R.id.maze_width_entry);
-            EditText timeInterval = fragmentView.findViewById(R.id.solve_time_delay);
+            EditText mazeHeight = this.view.findViewById(R.id.maze_height_entry);
+            EditText mazeWidth = this.view.findViewById(R.id.maze_width_entry);
+            EditText timeInterval = this.view.findViewById(R.id.solve_time_delay);
 
             MazeConfiguration configuration = new MazeConfiguration.Builder()
                     // adding two so that there will be extra space for a black border around the maze
@@ -75,7 +73,7 @@ public class OptionsFragment extends Fragment {
     }
 
     private void initMethodPicker() {
-        Spinner methodPicker = fragmentView.findViewById(R.id.method_picker);
+        Spinner methodPicker = view.findViewById(R.id.method_picker);
 
         methodPicker.setOnItemClickListener((parentAdapterView, view, position, id) -> {
             // TODO implement event listener, it should send the selected method to the MazeConfiguration

@@ -20,7 +20,7 @@ import kklions.mazesolver.model.MazeConfiguration;
  */
 
 public class MazeSolverActivity extends Activity implements OptionsFragment.OptionsNavigationListener,
-        LoadingFragment.LoadingNavigationListnener, DataManagerAccessor {
+        LoadingFragment.LoadingNavigationListener, DataManagerAccessor {
 
     private MazeSolverDataManager dataManager;
 
@@ -43,13 +43,18 @@ public class MazeSolverActivity extends Activity implements OptionsFragment.Opti
     public void navigateToLoadingScreen(MazeConfiguration configuration) {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_holder, MazeFragment.newInstance(configuration));
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.fragment_layout_holder, LoadingFragment.newInstance(configuration));
         transaction.commit();
     }
 
     @Override
-    public void navigateToSolveScreen() {
+    public void navigateToSolveScreen(MazeConfiguration configuration) {
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        // configuration is passed through to the loading fragment because im not sure what the best way to handle this is yet
+        transaction.replace(R.id.fragment_layout_holder, MazeFragment.newInstance(configuration));
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override

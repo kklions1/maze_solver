@@ -4,8 +4,13 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/current_status"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="@"/>
+        android:text="@string/generating_maze_text"/>
 
 </LinearLayout>
