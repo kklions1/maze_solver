@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import kklions.mazesolver.R;
 import kklions.mazesolver.model.MazeConfiguration;
@@ -43,7 +44,8 @@ public class LoadingFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        dataManager.generateMaze(configuration.getPercentMissing());
+        GenerateMazeAsync generateMazeAsync = new GenerateMazeAsync();
+        generateMazeAsync.execute(configuration);
     }
 
     @Override
@@ -52,10 +54,35 @@ public class LoadingFragment extends BaseFragment {
         return view;
     }
 
-    private class GenerateMazeAsync extends AsyncTask<MazeConfiguration, Void, Void> {
+    private class GenerateMazeAsync extends AsyncTask<MazeConfiguration, String, Void> {
         @Override
         public Void doInBackground(MazeConfiguration... configurations) {
+            MazeConfiguration configuration = configurations[0];
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+//            dataManager.generateMaze(configuration.getPercentMissing());
+            publishProgress("Solving Maze...");
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+//            dataManager.solveBreadthFirstSearch(configuration.getHeight(), configuration.getWidth());
             return null;
+        }
+
+        @Override
+        public void onProgressUpdate(String... params) {
+            TextView loadingScreenText = view.findViewById(R.id.current_status);
+            loadingScreenText.setText(params[0]);
+        }
+
+        @Override
+        public void onPostExecute(Void result) {
+            ((LoadingNavigationListener) getContext()).navigateToSolveScreen(configuration);
         }
     }
 
